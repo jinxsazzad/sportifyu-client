@@ -3,10 +3,11 @@
     font-weight: 700;
 }
 .menu li a:hover{
-    color: orange;
+    color: black;
     font-weight: 700;
 }
 .menu li a.active{
     font-weight: 700;
     border-bottom:2px solid;
+    background-color: orange;
 }

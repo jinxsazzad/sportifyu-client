@@ -1,14 +1,12 @@
 import {
   FaAd,
   FaBars,
-  FaCaretRight,
   FaClipboard,
   FaHome,
   FaMagnet,
   FaMailBulk,
   FaShopify,
   FaUser,
-  FaUserAlt,
 } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 import "./App.css";
