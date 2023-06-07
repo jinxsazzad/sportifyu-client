@@ -52,11 +52,6 @@ const NavBar = () => {
       ) : (
         <></>
       )}
-      <li>
-        <NavLink to={"/"} className=" uppercase">
-          Home
-        </NavLink>
-      </li>
     </>
   );
   const profileItems = (
@@ -109,7 +104,10 @@ const NavBar = () => {
               {navItems}
             </ul>
           </div>
-          <img className=" -ml-28   " src={logo} alt="" />
+          <div className="p-2">
+            <h3 className=" text-white text-3xl font-semibold">Sport Spark</h3>
+          <p className=" text-xs mb-2">Fueling Passion, Building Skills</p>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
