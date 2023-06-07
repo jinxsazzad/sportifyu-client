@@ -2,14 +2,37 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import { saveUser } from "../../api/auth";
 import axios from "axios";
 
 const SignUp = () => {
-  const { createUser, updateUserProfile } = useAuth();
+  const {
+    loading,
+    setLoading,
+    signInWithGoogle,
+    createUser,
+    updateUserProfile,
+  } = useAuth();
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.form?.pathname || "/";
+
+  // Password data related
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+  const handleToggleConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  // Collect form data from user by react hook form.
   const {
     register,
     formState: { errors },
@@ -17,39 +40,54 @@ const SignUp = () => {
     getValues,
   } = useForm();
 
+  // Handle user registration.
   const onSubmit = (data) => {
+    // Create user
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        updateUserProfile(data.name, data.photoURL).then(() => {
-          if (loggedUser) {
-            const saveUser = {
-              name: data.name,
-              email: loggedUser.email,
-              role: "user",
-            };
-            axios.post("/users", saveUser).then((data) => {
-              if (data?.data?.insertedId) {
-                Swal.fire({
-                  position: "top",
-                  icon: "success",
-                  title: "Create User Successful",
-                  text: `User Mail: ${loggedUser?.email}`,
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-                navigate("/");
-              }
-              console.log(data?.data);
-            });
-          }
-        });
+        updateUserProfile(data.name, data.photoURL)
+          .then(() => {
+            //Show signUp successful massage
+
+            //Save user for future other function
+
+            saveUser(loggedUser);
+            navigate(from, { replace: true });
+
+            // if (loggedUser) {
+            //   const saveUser = {
+            //     name: data.name,
+            //     email: loggedUser.email,
+            //     role: "student",
+            //   };
+            //   axios.post("/users", saveUser).then((data) => {
+            //     if (data?.data?.insertedId) {
+            //       Swal.fire({
+            //         position: "top",
+            //         icon: "success",
+            //         title: "Create User Successful",
+            //         text: `User Mail: ${loggedUser?.email}`,
+            //         showConfirmButton: false,
+            //         timer: 1500,
+            //       });
+            //       navigate("/");
+            //     }
+            //     console.log(data?.data);
+            //   });
+            // }
+          })
+          .catch((err) => {
+            setLoading(false);
+            console.log(err.massage);
+            //show err massage by toast
+          });
       })
       .catch((error) => {
-        const errorCode = error.code;
+        setLoading(false);
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        console.log(errorMessage);
         if (errorMessage) {
           Swal.fire({
             icon: "error",
@@ -59,18 +97,7 @@ const SignUp = () => {
           });
         }
       });
-
-    console.log(data);
-  };
-
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
-  };
-  const handleToggleConfirmPassword = () => {
-    setShowConfirmPassword(!showConfirmPassword);
+    return;
   };
 
   return (
@@ -151,7 +178,8 @@ const SignUp = () => {
                 {...register("password", {
                   required: true,
                   minLength: 6,
-                  pattern: /^(?=.[A-Za-z])(?=.\d)(?=.[!@#$%^&])[A-Za-z\d!@#$%^&*]{6,}$/,
+                  pattern:
+                    /^(?=.[A-Za-z])(?=.\d)(?=.[!@#$%^&])[A-Za-z\d!@#$%^&*]{6,}$/,
                 })}
                 aria-invalid={errors.password ? "true" : "false"}
               />
@@ -164,8 +192,8 @@ const SignUp = () => {
             </div>
             {errors.password && (
               <p className="text-red-500 text-xs italic">
-                Password must be at least 6 characters long, one letter
-                ,one number, one special character
+                Password must be at least 6 characters long, one letter ,one
+                number, one special character
               </p>
             )}
           </div>

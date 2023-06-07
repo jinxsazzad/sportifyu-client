@@ -8,7 +8,6 @@ const NavBar = () => {
   const { user, logOut } = useAuth();
   const userName = user?.displayName;
   const userPhoto = user?.photoURL;
-  console.log(user);
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {

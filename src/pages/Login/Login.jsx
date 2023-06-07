@@ -28,7 +28,7 @@ const Login = () => {
           const saveUser = {
             name: user.displayName,
             email: user.email,
-            role: "user",
+            role: "student",
           };
           console.log(saveUser);
           axios.post("/users", saveUser).then((data) => {
