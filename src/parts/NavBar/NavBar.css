@@ -1,0 +1,12 @@
+.menu li a{
+    color: white;
+    font-weight: 700;
+}
+.menu li a:hover{
+    color: orange;
+    font-weight: 700;
+}
+.menu li a.active{
+    font-weight: 700;
+    border-bottom:2px solid;
+}
