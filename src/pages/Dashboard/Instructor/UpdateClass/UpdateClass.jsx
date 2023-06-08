@@ -1,23 +1,17 @@
-import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import useAuth from "../../../../hooks/useAuth";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useLoaderData} from "react-router-dom";
   
 const UpdateClass = () => {
-    const { user } = useAuth();
-    const id = useParams();
-    console.log(id)
+    const {_id,className,classPicture,classPrice,availableSeats,classDescription} = useLoaderData()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-
-    axios.patch(`/classes/:${fg}`,data).then(data=>console.log(data.data))
-    
-
+    const updatedData = {...data}
+    axios.patch(`/classes/id/${_id}`,updatedData).then(data=>console.log(data.data))
   };
   return (
     <div>
@@ -35,6 +29,7 @@ const UpdateClass = () => {
               id="className"
               {...register("className", { required: true })}
               placeholder="Class Name"
+              defaultValue={className}
               className="w-full p-2 border border-gray-300 rounded"
             />
             {errors.className && (
@@ -50,40 +45,10 @@ const UpdateClass = () => {
               id="classPic"
               {...register("classPicture", { required: true })}
               placeholder="Enter picture URL"
-              defaultValue={"https://i.ibb.co/FHwb3Hg/Png-Item-44371.png"}
+              defaultValue={classPicture}
               className="w-full p-2 border border-gray-300 rounded"
             />
             {errors.classPic && (
-              <span className="text-red-500">This field is required</span>
-            )}
-          </div>
-          <div className="mb-4 lg:col-span-2">
-            <label htmlFor="instructorName" className="block mb-1">
-              Instructor Name:
-            </label>
-            <input
-              type="text"
-              id="instructorName"
-              {...register("instructorName", { required: true })}
-              defaultValue={user?.displayName || "User Unknown"}
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-            {errors.instructorName && (
-              <span className="text-red-500">This field is required</span>
-            )}
-          </div>
-          <div className="mb-4 lg:col-span-2">
-            <label htmlFor="instructorMail" className="block mb-1">
-              Instructor E-mail:
-            </label>
-            <input
-              type="email"
-              id="instructorMail"
-              {...register("instructorEmail", { required: true })}
-              defaultValue={user?.email || "email is not found"}
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-            {errors.instructorMail && (
               <span className="text-red-500">This field is required</span>
             )}
           </div>
@@ -95,7 +60,7 @@ const UpdateClass = () => {
             <input
               type="number"
               id="price"
-              defaultValue={30}
+              defaultValue={classPrice}
               {...register("classPrice", {
                 required: true,
                 valueAsNumber: true,
@@ -114,7 +79,7 @@ const UpdateClass = () => {
             <input
               type="number"
               id="seats"
-              defaultValue={50}
+              defaultValue={availableSeats}
               {...register("availableSeats", {
                 required: true,
                 valueAsNumber: true,
@@ -131,6 +96,7 @@ const UpdateClass = () => {
             </label>
             <textarea
               id="description"
+              defaultValue={classDescription}
               {...register("classDescription", { required: true })}
               className="w-full p-2 border border-gray-300 rounded"
             ></textarea>
@@ -143,7 +109,7 @@ const UpdateClass = () => {
             type="submit"
             className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded lg:col-span-4"
           >
-            Add Class
+            Update Class
           </button>
         </form>
       </div>

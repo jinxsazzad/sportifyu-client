@@ -1,22 +1,23 @@
-import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../layouts/MainLayout";
-import Home from "../pages/Home/HomeLayout/Home";
-import SignUp from "../pages/SignUp/SignUp";
-import Login from "../pages/Login/Login";
-import Instructors from "../pages/Instructors/Instructors";
-import Classes from "../pages/Classes/Classes";
-import Dashboard from "../layouts/Dashboard";
-import AdminProfile from "../pages/Dashboard/Admin/AdminProfile/AdminProfile";
-import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
-import ManageClasses from "../pages/Dashboard/Admin/ManageClasses/ManageClasses";
 import axios from "axios";
+import { createBrowserRouter } from "react-router-dom";
+import Dashboard from "../layouts/Dashboard";
+import MainLayout from "../layouts/MainLayout";
+import Classes from "../pages/Classes/Classes";
+import AdminProfile from "../pages/Dashboard/Admin/AdminProfile/AdminProfile";
+import ManageClasses from "../pages/Dashboard/Admin/ManageClasses/ManageClasses";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers/ManageUsers";
+import AddClass from "../pages/Dashboard/Instructor/AddClass/AddClass";
 import InstructorProfile from "../pages/Dashboard/Instructor/InstructorProfile/InstructorProfile";
 import MyClasses from "../pages/Dashboard/Instructor/MyClasses/MyClasses";
-import AddClass from "../pages/Dashboard/Instructor/AddClass/AddClass";
-import SelectedClasses from "../pages/Dashboard/Student/SelectedClasses/SelectedClasses";
+import UpdateClass from "../pages/Dashboard/Instructor/UpdateClass/UpdateClass";
 import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses/EnrolledClasses";
 import Payment from "../pages/Dashboard/Student/Payment/Payment";
-import UpdateClass from "../pages/Dashboard/Instructor/UpdateClass/UpdateClass";
+import SelectedClasses from "../pages/Dashboard/Student/SelectedClasses/SelectedClasses";
+import Home from "../pages/Home/HomeLayout/Home";
+import InstructorClasses from "../pages/Instructors/InstructorClasses";
+import Instructors from "../pages/Instructors/Instructors";
+import Login from "../pages/Login/Login";
+import SignUp from "../pages/SignUp/SignUp";
 const userRole = 'instructor';
 
 export const router = createBrowserRouter([
@@ -32,6 +33,20 @@ export const router = createBrowserRouter([
       {
         path: "/instructors",
         element: <Instructors></Instructors>,
+      },
+      {
+        path: "/instructor-all-class/:email",
+        element: <InstructorClasses></InstructorClasses>,
+        loader: ({params}) =>
+          axios
+            .get(`/classes/email/${params.email}`)
+            .then((response) => response.data)
+            .catch((error) => {
+              // Handle error
+              console.error("Error fetching data:", error);
+              // Optionally, you can throw the error to propagate it further
+              throw error;
+            }),
       },
       {
         path: "/classes",
@@ -94,8 +109,18 @@ export const router = createBrowserRouter([
         element: <AddClass></AddClass>,
       },
       {
-        path: "/dashboard/instructor-class-update",
-        element: <UpdateClass></UpdateClass>
+        path: "/dashboard/instructor-class-update/id/:id",
+        element: <UpdateClass></UpdateClass>,
+        loader: ({params}) =>
+          axios
+            .get(`/classes/id/${params.id}`)
+            .then((response) => response.data)
+            .catch((error) => {
+              // Handle error
+              console.error("Error fetching data:", error);
+              // Optionally, you can throw the error to propagate it further
+              throw error;
+            }),
       },
       {
         path: "/dashboard/student-selected-classes",
