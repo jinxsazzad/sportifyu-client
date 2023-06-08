@@ -1,0 +1,80 @@
+[
+    {
+      "image": "alex_reynolds.jpg",
+      "name": "Alex Reynolds",
+      "email": "alex.reynolds@example.com",
+      "numberOfClassesTaken": 5,
+      "nameOfHisClasses": ["Soccer Stars", "Basketball Basics"]
+    },
+    {
+      "image": "sarah_thompson.jpg",
+      "name": "Sarah Thompson",
+      "email": "sarah.thompson@example.com",
+      "numberOfClassesTaken": 7,
+      "nameOfHisClasses": ["Tennis Techniques", "Volleyball Fundamentals"]
+    },
+    {
+      "image": "james_anderson.jpg",
+      "name": "James Anderson",
+      "email": "james.anderson@example.com",
+      "numberOfClassesTaken": 3,
+      "nameOfHisClasses": ["Swimming Skills"]
+    },
+    {
+      "image": "emily_ramirez.jpg",
+      "name": "Emily Ramirez",
+      "email": "emily.ramirez@example.com",
+      "numberOfClassesTaken": 4,
+      "nameOfHisClasses": ["Martial Arts Mastery"]
+    },
+    {
+      "image": "michael_turner.jpg",
+      "name": "Michael Turner",
+      "email": "michael.turner@example.com",
+      "numberOfClassesTaken": 6,
+      "nameOfHisClasses": ["Gymnastics Galore"]
+    },
+    {
+      "image": "olivia_lee.jpg",
+      "name": "Olivia Lee",
+      "email": "olivia.lee@example.com",
+      "numberOfClassesTaken": 2,
+      "nameOfHisClasses": ["Baseball Bootcamp"]
+    },
+    {
+      "image": "benjamin_clark.jpg",
+      "name": "Benjamin Clark",
+      "email": "benjamin.clark@example.com",
+      "numberOfClassesTaken": 4,
+      "nameOfHisClasses": ["Golf for Beginners"]
+    },
+    {
+      "image": "jessica_roberts.jpg",
+      "name": "Jessica Roberts",
+      "email": "jessica.roberts@example.com",
+      "numberOfClassesTaken": 3,
+      "nameOfHisClasses": ["Archery Adventures"]
+    },
+    {
+      "image": "christopher_mitchell.jpg",
+      "name": "Christopher Mitchell",
+      "email": "christopher.mitchell@example.com",
+      "numberOfClassesTaken": 5,
+      "nameOfHisClasses": ["Dance Fusion"]
+    },
+    {
+      "image": "samantha_campbell.jpg",
+      "name": "Samantha Campbell",
+      "email": "samantha.campbell@example.com",
+      "numberOfClassesTaken": 8,
+      "nameOfHisClasses": ["Yoga for Athletes"]
+    },
+    {
+      "image": "ethan_johnson.jpg",
+      "name": "Ethan Johnson",
+      "email": "ethan.johnson@example.com",
+      "numberOfClassesTaken": 2,
+      "nameOfHisClasses": ["Sports Science Lab"]
+    }
+  ]
+  

@@ -1,14 +1,17 @@
 import React from "react";
+import { useLoaderData } from "react-router-dom";
 
 const Classes = () => {
-    const classes = ['1','1','1','1','1','1','1','1','1','1','1','1','1','1','1',]
+  const allClass = useLoaderData()
+  console.log(allClass)
     const bg = false
   return (
     <div>
-      <div className="grid grid-cols-5">
-        {classes.map(cls=><div className={`border-4 indicator my-6 ${bg===true?'border-black':'border-red-400'}`}>
-          <span className="indicator-item indicator-center badge badge-secondary w-20 h-6">100 $</span>
-          <div className="card rounded-md shadow-xl text-black bg-white">
+      <div className=" mx-auto h-full">
+      <div className="grid grid-cols-3">
+        {allClass?.map(cls=><div key={cls._id} className={`border-4 indicator my-6 ${cls.availableSeats === 0?'border-black':'border-red-400'}`}>
+          <span className="indicator-item indicator-center badge badge-secondary w-20 h-6">{cls.price}$</span>
+          <div className="card pt-4 w-full rounded-md shadow-xl  bg-white">
             <figure>
               <div className="avatar">
                 <div className="w-40 h-40">
@@ -18,20 +21,21 @@ const Classes = () => {
             </figure>
             <div className="card-body flex justify-center items-center">
               <h2 className="card-title">
-                Class Name
+                {cls.className}
                 <span className="badge badge-secondary">New</span>
               </h2>
-              <p>Instructor Name <br />
-              Available seats:
+              <p>{cls.instructorName} <br />
+              Available seats: {cls.availableSeats}
               </p>
               <div className="card-actions">
-                <div className="badge badge-outline btn btn-xs rounded-full">
+                <div className="badge badge-secondary btn btn-xs rounded-full">
                   See classes
                 </div>
               </div>
             </div>
           </div>
         </div>)}
+      </div>
       </div>
     </div>
   );

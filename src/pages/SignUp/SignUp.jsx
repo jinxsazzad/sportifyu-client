@@ -177,9 +177,7 @@ const SignUp = () => {
                 type={showPassword ? "text" : "password"}
                 {...register("password", {
                   required: true,
-                  minLength: 6,
-                  pattern:
-                    /^(?=.[A-Za-z])(?=.\d)(?=.[!@#$%^&])[A-Za-z\d!@#$%^&*]{6,}$/,
+                  pattern: /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,15}$/,
                 })}
                 aria-invalid={errors.password ? "true" : "false"}
               />
@@ -192,8 +190,7 @@ const SignUp = () => {
             </div>
             {errors.password && (
               <p className="text-red-500 text-xs italic">
-                Password must be at least 6 characters long, one letter ,one
-                number, one special character
+               Password must be 6 characters long, at least one uppercase letter and at least one special character !
               </p>
             )}
           </div>

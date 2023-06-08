@@ -1,21 +1,20 @@
 import {
-  FaAd,
   FaAsterisk,
   FaBars,
-  FaClipboard,
   FaCreditCard,
   FaDeezer,
   FaDotCircle,
   FaHome,
-  FaMagnet,
   FaPlusCircle,
   FaUser,
   FaUsers,
 } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const Dashboard = () => {
-  const userRole = `${"admin"}`;
+  const {role}= useAuth()
+  const userRole = role
   return (
     <>
       <div className="drawer lg:drawer-open ">
@@ -55,19 +54,19 @@ const Dashboard = () => {
             ) : userRole === "instructor" ? (
               <>
                 <li>
-                  <Link>
+                  <NavLink to={'/dashboard/'}>
                     <FaUser></FaUser> My Profile <span className="badge badge-primary badge-sm uppercase">{userRole}</span>
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link>
+                  <NavLink to={'/dashboard/instructor-add-class'}>
                     <FaPlusCircle></FaPlusCircle> Add a Class
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link>
+                  <NavLink to={'/dashboard/instructor-my-classes'}>
                     <FaAsterisk></FaAsterisk> My Classes
-                  </Link>
+                  </NavLink>
                 </li>
               </>
             ) : (
