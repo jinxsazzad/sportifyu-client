@@ -9,6 +9,8 @@ const NavBar = () => {
   const userName = user?.displayName;
   const userPhoto = user?.photoURL;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const logo =
+    "https://i.ibb.co/QJ6XKmg/stock-vector-ss-logo-design-vector-template-2230247661.jpg";
 
   //for toggle menu bar in small device
   const toggleMenu = () => {
@@ -93,18 +95,20 @@ const NavBar = () => {
         <div className="p-2 flex justify-center items-center gap-3">
           <img
             className="w-28 h-28 rounded-full -ms-8 hidden lg:block"
-            src="https://i.ibb.co/QJ6XKmg/stock-vector-ss-logo-design-vector-template-2230247661.jpg"
+            src={logo}
             alt=""
           />
           <div>
-            <h3 className="text-white text-3xl font-semibold ">Sport Spark</h3>
+            <h3 className="text-white text-xl md:text-3xl font-semibold ">
+              Sport Spark
+            </h3>
             <p className="text-xs my-1 font-semibold text-[orange] hidden lg:block">
               Fueling Passion, Building Skills
             </p>
           </div>
         </div>
       </div>
-      {/* navbar enter part */}
+      {/* navbar center part */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
