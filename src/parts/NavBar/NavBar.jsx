@@ -1,30 +1,21 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import "./NavBar.css";
+import { FaBars, FaSignOutAlt } from "react-icons/fa";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
   const userName = user?.displayName;
   const userPhoto = user?.photoURL;
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Added state for menu toggle
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-      if (scrollTop > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //for toggle menu bar in small device
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
+  // All navigation item are here
   const navItems = (
     <>
       <li>
@@ -54,107 +45,100 @@ const NavBar = () => {
       )}
     </>
   );
+
+  // All item under profile picture
   const profileItems = (
     <>
       {user && (
         <>
           <li>
-            <a className="justify-between">
-              {user ? `${userName}` : "User"}
-              <span className="badge">Update</span>
-            </a>
+            <a className="justify-between">{user ? `${userName}` : "User"}</a>
           </li>
           <li>
-            <a onClick={logOut}>Logout</a>
+            <a onClick={logOut}>
+              Logout <FaSignOutAlt></FaSignOutAlt>
+            </a>
           </li>
         </>
       )}
     </>
   );
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   return (
-    <div>
-      <div
-        className={`navbar bg-secondary text-white w-full z-10 transition-all duration-500 h-12 ${
-          isScrolled ? "bg-slate-600 shadow-md py-2" : "bg-transparent"
-        }${isScrolled ? "h-10" : "h-16"}`}
-      >
-        <div className="navbar-start">
-          <div className="dropdown">
+    //start navbar
+    <nav className={"navbar bg-secondary text-white w-full h-14"}>
+      {/* navbar start part */}
+      <div className="navbar-start">
+        {/* navbar items hidden in lg show in sm */}
+        <div className="dropdown">
+          <label
+            tabIndex={0}
+            className={`btn btn-ghost text-xl lg:hidden ${
+              isMenuOpen ? "active" : ""
+            }`}
+            onClick={toggleMenu}
+          >
+            <FaBars></FaBars>
+          </label>
+          <ul
+            tabIndex={0}
+            className={`menu menu-sm dropdown-content mt-3 p-2 shadow-lg rounded w-52 z-50 bg-secondary ${
+              isMenuOpen ? "show" : ""
+            }`}
+          >
+            {navItems}
+          </ul>
+        </div>
+        {/* site logo or name show in all size */}
+        <div className="p-2 flex justify-center items-center gap-3">
+          <img
+            className="w-28 h-28 rounded-full -ms-8 hidden lg:block"
+            src="https://i.ibb.co/QJ6XKmg/stock-vector-ss-logo-design-vector-template-2230247661.jpg"
+            alt=""
+          />
+          <div>
+            <h3 className="text-white text-3xl font-semibold ">Sport Spark</h3>
+            <p className="text-xs my-1 font-semibold text-[orange] hidden lg:block">
+              Fueling Passion, Building Skills
+            </p>
+          </div>
+        </div>
+      </div>
+      {/* navbar enter part */}
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">{navItems}</ul>
+      </div>
+      {/* navbar end part. login logout function are here. */}
+      <div className="navbar-end">
+        {user ? (
+          <div className="dropdown dropdown-end">
             <label
               tabIndex={0}
-              className={`btn btn-ghost lg:hidden ${
-                isMenuOpen ? "active" : ""
-              }`} // Added active class based on menu toggle state
-              onClick={toggleMenu} // Added onClick event to toggle the menu
+              className="btn btn-ghost bg-black hover:bg-black btn-circle avatar"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+              <div className="w-auto rounded-full">
+                <img src={userPhoto} alt="User" />
+              </div>
             </label>
             <ul
               tabIndex={0}
-              className={`menu menu-sm dropdown-content mt-3 p-2 shadow-lg rounded w-52 z-50 bg-secondary ${
-                isMenuOpen ? "show" : "" // Added show class based on menu toggle state
-              }`}
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow w-52 z-50 bg-secondary rounded-md "
             >
-              {navItems}
+              {profileItems}
             </ul>
           </div>
-          <div className="p-2">
-            <h3 className="text-white text-3xl font-semibold">Sport Spark</h3>
-            <p className="text-xs mb-2">Fueling Passion, Building Skills</p>
-          </div>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navItems}</ul>
-        </div>
-        <div className="navbar-end">
-          {user ? (
-            <div className="dropdown dropdown-end">
-              <label
-                tabIndex={0}
-                className="btn btn-ghost bg-white hover:bg-white btn-circle avatar"
-              >
-                <div className="w-auto rounded-full">
-                  <img src={userPhoto} alt="User" />
-                </div>
-              </label>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box w-52 z-50 bg-black"
-              >
-                {profileItems}
-              </ul>
-            </div>
-          ) : (
-            <>
-              <Link
-                className="btn btn-primary font-semibold text-white rounded-full hover:bg-secondary"
-                to={"/login"}
-              >
-                LogIn
-              </Link>
-            </>
-          )}
-        </div>
+        ) : (
+          <>
+            <Link
+              className="btn btn-primary font-semibold text-white rounded-full hover:bg-secondary"
+              to={"/login"}
+            >
+              LogIn
+            </Link>
+          </>
+        )}
       </div>
-    </div>
+    </nav>
   );
 };
 

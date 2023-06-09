@@ -1,13 +1,22 @@
-.menu li a{
+.menu li a {
     color: white;
     font-weight: 700;
-}
-.menu li a:hover{
-    color: black;
+    text-decoration: none; 
+  }
+  
+  .menu li a:hover {
+    border-radius: 0;
+    border-bottom: 3px solid whitesmoke;
+    padding-bottom: 5px;
+    color: orange; 
+    background-image: none; 
+  }
+  
+  .menu li a.active {
     font-weight: 700;
-}
-.menu li a.active{
-    font-weight: 700;
-    border-bottom:2px solid;
-    background-color: orange;
-}
+    border-bottom: 3px solid orange;
+    padding-bottom: 5px; /* Added to move the border down */
+    border-radius: 0; /* Added to remove button-like styling */
+    background-image: none; /* Added to remove button-like styling */
+  }
+  
