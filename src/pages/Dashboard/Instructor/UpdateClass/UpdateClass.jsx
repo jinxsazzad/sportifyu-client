@@ -1,17 +1,26 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useLoaderData} from "react-router-dom";
-  
+import { useLoaderData } from "react-router-dom";
+
 const UpdateClass = () => {
-    const {_id,className,classPicture,classPrice,availableSeats,classDescription} = useLoaderData()
+  const {
+    _id,
+    className,
+    classPicture,
+    classPrice,
+    availableSeats,
+    classDescription,
+  } = useLoaderData();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    const updatedData = {...data}
-    axios.patch(`/classes/update-instructor/${_id}`,updatedData).then(data=>console.log(data.data))
+    const updatedData = { ...data };
+    axios
+      .patch(`/classes/update-instructor/${_id}`, updatedData)
+      .then((data) => console.log(data.data));
   };
   return (
     <div>

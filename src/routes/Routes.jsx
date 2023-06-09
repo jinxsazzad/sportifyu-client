@@ -52,16 +52,6 @@ export const router = createBrowserRouter([
       {
         path: "/classes",
         element: <Classes></Classes>,
-        loader: () =>
-          axios
-            .get("/classes")
-            .then((response) => response.data)
-            .catch((error) => {
-              // Handle error
-              console.error("Error fetching data:", error);
-              // Optionally, you can throw the error to propagate it further
-              throw error;
-            }),
       },
       {
         path: "signup",
@@ -132,7 +122,7 @@ export const router = createBrowserRouter([
         element: <EnrolledClasses></EnrolledClasses>,
       },
       {
-        path: "/dashboard/student-payment",
+        path: "/dashboard/student-payment/id/:id",
         element: <Payment></Payment>,
       },
       {
