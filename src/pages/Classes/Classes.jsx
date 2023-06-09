@@ -1,10 +1,44 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Classes = () => {
   const {user}= useAuth()
   const allClass = useLoaderData();
+  const [cls, setCls] = useState({})
+
+  const {_id,className,classPicture,instructorName,instructorEmail,selectedStudent,availableSeats}=cls
+  
+  
+  
+
+  const handleSelectClass=(id)=>{
+    axios.get(`/classes/id/${id}`).then(data=>setCls(data.data))
+
+    console.log(className, selectedStudent)
+    
+    const classUpdateField = {
+      selectedStudent:selectedStudent + 1,
+      availableSeats: availableSeats -1,
+    }
+    console.log(classUpdateField);
+    axios.patch(`/classes/update-student/${id}`,classUpdateField).then(data=>console.log(data.data));
+    axios.put(`/students-classes`,classByStudent).then()
+
+    const classByStudent = {
+      classID:_id,
+      className,
+      classPicture,
+      instructorName,
+      instructorEmail,
+      studentName:user.displayName,
+      studentEmail:user.email,
+      selected:true,
+      enrolled:false,
+    }
+    console.log(classByStudent)
+  }
   return (
     <div>
       <div className=" mx-auto h-full">
@@ -35,8 +69,8 @@ const Classes = () => {
                     Price:{cls.classPrice}
                   </p>
                   <div className="card-actions">
-                    <div className={`badge badge-secondary btn btn-xs rounded-full ${user.role === "student"? 'bg-white':' disabled'}`}>
-                      See classes
+                    <div onClick={()=>handleSelectClass(cls._id)} className={`badge badge-secondary btn btn-xs rounded-full ${user.role === "student"? 'bg-white':' disabled'}`}>
+                      Select Class
                     </div>
                   </div>
                 </div>

@@ -11,7 +11,7 @@ const UpdateClass = () => {
   } = useForm();
   const onSubmit = (data) => {
     const updatedData = {...data}
-    axios.patch(`/classes/id/${_id}`,updatedData).then(data=>console.log(data.data))
+    axios.patch(`/classes/update-instructor/${_id}`,updatedData).then(data=>console.log(data.data))
   };
   return (
     <div>
