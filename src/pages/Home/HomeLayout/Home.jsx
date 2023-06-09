@@ -3,6 +3,7 @@ import HeroSection from '../HeroSection/HeroSection';
 import PopularClasses from '../PopularCalsses/PopularClasses';
 import PopularInstructors from '../PopularInstructors/PopularInstructors';
 import Features from '../ExtraSection/Features';
+import Testimonials from '../Testimonials/Testimonials';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
            <Features></Features> 
            <PopularClasses></PopularClasses>
            <PopularInstructors></PopularInstructors>
+           <Testimonials></Testimonials>
         </>
     );
 };

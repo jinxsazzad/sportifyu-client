@@ -19,7 +19,7 @@ const PopularClasses = () => {
   const bgURL = 'https://i.ibb.co/gFWf1HB/sports-banner.png'
   return (
     <div>
-      <div
+      {/* <div
         className="relative bg-cover bg-center text-white text-center py-4"
         style={{ backgroundImage: `url(${bgURL})` }}
       >
@@ -31,6 +31,12 @@ const PopularClasses = () => {
           <h1 className=" mb-1 text-5xl font-bold text-white">[ Popular Sport's Classes ]</h1>
           <h2 className="text-lg text-white">Most popular classes are here ! Enrol Now!</h2>
         </div>
+      </div> */}
+      <div className=" py-4 text-center">
+        <h1 className=" mb-1 text-5xl  font-bold">
+          [ Popular Sport's Classes ]
+        </h1>
+        <p> Most popular classes are here ! Enrol Now! </p>
       </div>
 
       <div className="grid grid-cols-3 gap-2 py-1 px-10">

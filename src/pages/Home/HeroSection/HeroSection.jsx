@@ -7,7 +7,7 @@ import { Pagination, Navigation, Autoplay } from "swiper";
 const bgURL = "https://i.ibb.co/BGmfvM9/Banners-01-min-1200x400.jpg";
 const HeroSection = () => {
   return (
-    <div className=" z-10">
+    <div>
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
