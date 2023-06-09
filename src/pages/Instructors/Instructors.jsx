@@ -1,20 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-
-// import required modules
-import { Pagination } from "swiper";
+import React, { useEffect,useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Instructors = () => {
   const role = "instructor";
-  const instructorClasses = ["l", "l", "l", "l"];
   const [instructors, setInstructors] = useState([]);
   useEffect(() => {
     axios.get(`/users/role/${role}`).then((data) => setInstructors(data.data));
