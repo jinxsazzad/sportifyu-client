@@ -77,19 +77,19 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <Link>
+                  <NavLink to={'/dashboard/student-selected-classes'}>
                     <FaAsterisk></FaAsterisk> My Selected Classes
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link>
+                  <NavLink to={'/dashboard/student-enrolled-classes'}>
                     <FaDotCircle></FaDotCircle> MY Enrolled
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link>
+                  <NavLink to={'/dashboard/student-payment'}>
                     <FaCreditCard></FaCreditCard> Payment
-                  </Link>
+                  </NavLink>
                 </li>
               </>
             )}

@@ -17,7 +17,7 @@ const MyClasses = () => {
       .then((data) => setMyClasses(data.data));
   }, [user,myClasses]);
   const handleDeleteClass =id=>{
-    axios.delete(`/classes/id${id}`).then(data=>console.log(data.data))
+    axios.delete(`/classes/id/${id}`).then(data=>console.log(data.data))
   }
   return (
     <div>

@@ -18,7 +18,8 @@ import InstructorClasses from "../pages/Instructors/InstructorClasses";
 import Instructors from "../pages/Instructors/Instructors";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
-const userRole = 'instructor';
+import StudentProfile from "../pages/Dashboard/Student/StudentProfile/StudentProfile";
+const userRole = 'student';
 
 export const router = createBrowserRouter([
   {
@@ -89,7 +90,7 @@ export const router = createBrowserRouter([
           ) : userRole === "instructor" ? (
             <InstructorProfile></InstructorProfile>
           ) : (
-            <div>Student</div>
+            <StudentProfile></StudentProfile>
           ),
       },
       {
