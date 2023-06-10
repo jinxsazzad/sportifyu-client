@@ -19,7 +19,7 @@ import Instructors from "../pages/Instructors/Instructors";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import StudentProfile from "../pages/Dashboard/Student/StudentProfile/StudentProfile";
-const userRole = 'student';
+const userRole = 'instructor';
 
 export const router = createBrowserRouter([
   {
@@ -122,7 +122,7 @@ export const router = createBrowserRouter([
         element: <EnrolledClasses></EnrolledClasses>,
       },
       {
-        path: "/dashboard/student-payment/id/:id",
+        path: "/dashboard/student-payment",
         element: <Payment></Payment>,
       },
       {

@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+import { HomePageTittles } from "../../../../components/Tittles/Tittles";
 
 const UpdateClass = () => {
   const {
@@ -24,6 +25,7 @@ const UpdateClass = () => {
   };
   return (
     <div>
+      <HomePageTittles tittle="Anything Wrong? Update Now" subTittle="Update has some limitation!" />
       <div className=" p-1">
         <form
           onSubmit={handleSubmit(onSubmit)}

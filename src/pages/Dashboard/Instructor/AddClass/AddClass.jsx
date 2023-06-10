@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../../hooks/useAuth";
 import axios from "axios";
+import { HomePageTittles } from "../../../../components/Tittles/Tittles";
 const AddClass = () => {
   const { user } = useAuth();
   const {
@@ -25,6 +26,7 @@ const AddClass = () => {
   };
   return (
     <div>
+      <HomePageTittles tittle="Add Your Class to Site" subTittle="A response will send to admin. Wail for confirmation" />
       <div className=" p-1">
         <form
           onSubmit={handleSubmit(onSubmit)}

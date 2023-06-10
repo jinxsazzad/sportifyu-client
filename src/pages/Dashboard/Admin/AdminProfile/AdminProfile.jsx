@@ -1,8 +1,10 @@
 import React from "react";
+import { HomePageTittles } from "../../../../components/Tittles/Tittles";
 
 const AdminProfile = () => {
   return (
     <div>
+      <HomePageTittles  />
       <div className="card w-1/2 mt-40 rounded-md shadow-xl text-black mx-auto bg-white">
         <figure className="mt-6">
           <div className="avatar border-4 border-orange-600 rounded-full p-2 ">
