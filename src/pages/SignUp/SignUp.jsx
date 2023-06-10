@@ -6,8 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import { saveUser } from "../../api/auth";
-import axios from "axios";
-
+import { toast } from "react-hot-toast";
 const SignUp = () => {
   const {
     loading,
@@ -49,53 +48,32 @@ const SignUp = () => {
         console.log(loggedUser);
         updateUserProfile(data.name, data.photoURL)
           .then(() => {
-            //Show signUp successful massage
+            // Show Success massage
+            Swal.fire({
+              position: "top",
+              icon: "success",
+              title: "Create User Successful",
+              text: `User Mail: ${loggedUser?.email}`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
 
             //Save user for future other function
-
             saveUser(loggedUser);
             navigate(from, { replace: true });
-
-            // if (loggedUser) {
-            //   const saveUser = {
-            //     name: data.name,
-            //     email: loggedUser.email,
-            //     role: "student",
-            //   };
-            //   axios.post("/users", saveUser).then((data) => {
-            //     if (data?.data?.insertedId) {
-            //       Swal.fire({
-            //         position: "top",
-            //         icon: "success",
-            //         title: "Create User Successful",
-            //         text: `User Mail: ${loggedUser?.email}`,
-            //         showConfirmButton: false,
-            //         timer: 1500,
-            //       });
-            //       navigate("/");
-            //     }
-            //     console.log(data?.data);
-            //   });
-            // }
           })
           .catch((err) => {
             setLoading(false);
             console.log(err.massage);
             //show err massage by toast
+            toast.error(err.massage);
           });
       })
       .catch((error) => {
         setLoading(false);
         const errorMessage = error.message;
         console.log(errorMessage);
-        if (errorMessage) {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: `${errorMessage}`,
-            footer: '<a href="">Why do I have this issue?</a>',
-          });
-        }
+        toast.error(errorMessage);
       });
     return;
   };
@@ -190,7 +168,8 @@ const SignUp = () => {
             </div>
             {errors.password && (
               <p className="text-red-500 text-xs italic">
-               Password must be 6 characters long, at least one uppercase letter and at least one special character !
+                Password must be 6 characters long, at least one uppercase
+                letter and at least one special character !
               </p>
             )}
           </div>

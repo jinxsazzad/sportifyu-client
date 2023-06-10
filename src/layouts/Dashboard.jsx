@@ -14,6 +14,7 @@ import useAuth from "../hooks/useAuth";
 
 const Dashboard = () => {
   const {role}= useAuth()
+  console.log(role)
   const userRole = role
   return (
     <>

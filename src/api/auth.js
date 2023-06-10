@@ -1,27 +1,75 @@
-import axios from "axios"
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 // save a user to db
-export const saveUser = user =>{
-    const currentUser = {
-        name:user.displayName,
-        email:user.email,
-        role:'student'
+export const saveUser = (user) => {
+  const currentUser = {
+    name: user?.displayName,
+    email: user?.email,
+  };
+  axios.put(`/users/${user?.email}`, currentUser).then((res) => {
+    if (res?.data?.acknowledged === true) {
+      toast.success("You added as Student");
+    } else {
+      toast.error("Something Wrong");
     }
-    axios.put(`/users/${user?.email}`,currentUser).then(data=>console.log(data?.data?.message))
-}
+    // console.log(res.data.acknowledged)
+  });
+};
+export const makeAdmin = (user) => {
+  const currentUser = {
+    name: user?.name,
+    email: user?.email,
+    role: "admin",
+  };
+  if(user.role=="admin"){
+    return toast.error("He is already admin")
+  }
+    axios.put(`/users/${user?.email}`, currentUser).then((res) => {
+      if (res?.data?.acknowledged === true) {
+        toast.success("You added as Admin");
+      } else {
+        toast.error("Something Wrong");
+      }
+      // console.log(res.data.acknowledged)
+    });
+  
+};
+export const makeInstructor = (user) => {
+  const currentUser = {
+    name: user?.name,
+    email: user.email,
+    role: "instructor",
+  };
+  if(user.role=="instructor"){
+    return toast.error("He is already Instructor")
+  }
+  axios.put(`/users/${user?.email}`, currentUser).then((res) => {
+    if (res?.data?.acknowledged === true) {
+      toast.success("You added as Instructor");
+    } else {
+      toast.error("Something Wrong");
+    }
+    // console.log(res.data.acknowledged)
+  });
+};
 
 //get role
-export const getRole = async email =>{
+export const getRole = async (email) => {
+  try {
     const response = await axios.get(`/users/${email}`);
-    const user = response
-    return(user?.data[0]?.role)
-}
-
-// become a instructor 
-export const becomeInstructor = email=>{
-    const currentUser = {
-        role:'instructor'
+    const user = response.data;
+    if (user) {
+      const role = user.role;
+      console.log("User role:", role);
+      return role;
+    } else {
+      console.log("User not found");
+      return null;
     }
-    return axios.put(`/users/${email}`,currentUser).then(data=>console.log(data))
-}
+  } catch (error) {
+    console.error("Error retrieving user:", error);
+    return null;
+  }
+};
 

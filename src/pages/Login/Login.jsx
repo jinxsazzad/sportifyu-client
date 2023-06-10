@@ -5,8 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
-import axios from "axios";
-
+import { saveUser } from "../../api/auth";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,37 +22,9 @@ const Login = () => {
     signIn(data.mail, data.password)
       .then((result) => {
         const user = result?.user;
-        console.log(user.email);
         if (user) {
-          const saveUser = {
-            name: user.displayName,
-            email: user.email,
-            role: "student",
-          };
-          console.log(saveUser);
-          axios.post("/users", saveUser).then((data) => {
-            if (data?.data?.insertedId) {
-              Swal.fire({
-                position: "top",
-                icon: "success",
-                title: "Create User Successful",
-                text: `User Mail: ${user.email}`,
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            } else {
-              Swal.fire({
-                position: "top",
-                icon: "success",
-                title: "Create User Successful",
-                text: `User Mail: ${data?.data?.message}`,
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            }
-            navigate(from, { replace: true });
-            console.log(data?.data);
-          });
+          saveUser(user);
+          navigate(from, { replace: true });
         }
       })
       .catch((error) => {
@@ -81,7 +52,9 @@ const Login = () => {
   return (
     <div className="bg-white flex-col justify-center items-center shadow-md rounded-xl w-full  lg:w-1/3 mx-auto my-12 py-8 text-black">
       <form className="py-1 px-8 w-full" onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="text-2xl font-bold -mt-6 mb-6 text-center">Login Form !</h1>
+        <h1 className="text-2xl font-bold -mt-6 mb-6 text-center">
+          Login Form !
+        </h1>
 
         {/* Emil Address field */}
         <div className="mb-4">
@@ -134,9 +107,7 @@ const Login = () => {
             </span>
           </div>
           {errors.password && (
-            <p className="text-red-500 text-xs italic">
-              Password is required.
-            </p>
+            <p className="text-red-500 text-xs italic">Password is required.</p>
           )}
         </div>
 

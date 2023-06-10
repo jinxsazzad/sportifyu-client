@@ -98,7 +98,7 @@ export const ClassCard = ({ cls, user, handleSelectClass }) => {
               onClick={
                 handleSelectClass ? () => handleSelectClass(cls._id) : ""
               }
-              className={`btn btn-sm btn-outline btn-wide bg-orange-500 hover:bg-black white  ${
+              className={`btn btn-sm btn-outline btn-full bg-orange-500 hover:bg-black white  ${
                 user?.role === "student" || cls.availableSeats === 0 ? "" : ""
               }`}
             >

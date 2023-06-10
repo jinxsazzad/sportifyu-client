@@ -1,6 +1,14 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { makeAdmin, makeInstructor } from "../../../../api/auth";
+import useAuth from "../../../../hooks/useAuth";
 
 const ManageUsers = () => {
+  const {user}=useAuth()
+  const [allUsers, setAllUsers] = useState(null);
+  useEffect(() => {
+    axios.get("/users").then((res) => setAllUsers(res.data));
+  }, [allUsers]);
   return (
     <div>
       <div className="overflow-x-auto p-6 text-black">
@@ -8,37 +16,31 @@ const ManageUsers = () => {
           {/* head */}
           <thead>
             <tr className="text-black">
-              <th>Name</th>
-              <th>Role</th>
-              <th>Action</th>
+              <th className="font-bold text-lg w-fit">Name</th>
+              <th className="font-bold text-lg">Role</th>
+              <th className="font-bold text-lg text-center">Change Role</th>
             </tr>
           </thead>
           <tbody>
             {/* row 1 */}
-            <tr>
-              <td>
-                <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src="https://i.ibb.co/FHwb3Hg/Little-cute-minicom-png.png"
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
+
+            {allUsers?.map((users) => (
+              <tr>
+                <td>
                   <div>
-                    <div className="font-bold">Hart Hagerty</div>
+                    <div className="font-bold">{users.name}</div>
+                    <p>{users.email}</p>
                   </div>
-                </div>
-              </td>
-              <td>
-                Admin
-              </td>
-              <td>
-                <button className="btn btn-secondary btn-xs">Admin</button>
-                <button className="btn btn-secondary btn-xs">Instructor</button>
-              </td>
-            </tr>
+                </td>
+                <td>{users.role}</td>
+                <td className=" text-center">
+                  <button className="btn btn-secondary btn-xs me-3"onClick={()=>makeAdmin(users)}>Admin</button>
+                  <button className="btn btn-secondary btn-xs" onClick={()=>makeInstructor(users)}>
+                    Instructor
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

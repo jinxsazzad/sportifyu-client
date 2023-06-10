@@ -16,7 +16,7 @@ const Classes = () => {
     });
   };
   useEffect(() => {
-    axios.get("/classes").then((data) => setAllClasses(data?.data));
+    axios.get("/classes/approved").then((data) => setAllClasses(data?.data));
   }, [cls, handleSelectClass]);
 
   useEffect(() => {

@@ -19,7 +19,7 @@ import Instructors from "../pages/Instructors/Instructors";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import StudentProfile from "../pages/Dashboard/Student/StudentProfile/StudentProfile";
-const userRole = 'instructor';
+
 
 export const router = createBrowserRouter([
   {
@@ -74,14 +74,16 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard/",
-        element:
-          userRole === "admin" ? (
-            <AdminProfile></AdminProfile>
-          ) : userRole === "instructor" ? (
-            <InstructorProfile></InstructorProfile>
-          ) : (
-            <StudentProfile></StudentProfile>
-          ),
+        element:<AdminProfile></AdminProfile>,
+      },
+      {
+        path: "/dashboard/",
+        element: 
+            <InstructorProfile></InstructorProfile>,
+      },
+      {
+        path: "/dashboard/",
+        element:<StudentProfile></StudentProfile>,
       },
       {
         path: "/dashboard/admin-manage-users",
