@@ -17,16 +17,16 @@ const Instructors = () => {
         tittle="[ Experienced - Friendly - Professional ]"
         subTittle=" Find Your Perfect Instructors "
       />
-      <div className="bg-primary">
+      <div>
         <div className=" pt-5 flex items-center max-w-md mx-auto">
           <input
             type="text"
             placeholder="Search..."
-            className="flex-1 py-2 px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="flex-1 py-2 px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
           />
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-r-lg"
+            className="bg-orange-500 hover:bg-orange-600 text-white py-3 px-4 rounded-r-lg"
           >
             <FaSearch></FaSearch>
           </button>

@@ -52,30 +52,40 @@ const Classes = () => {
       axios
         .patch(`/classes/update-student/${_id}`, classUpdateField)
         .then((data) => console.log(data.data));
-      axios.post(`/students-classes`, classByStudent).then(data=>console.log(data.data));
+      axios
+        .post(`/students-classes`, classByStudent)
+        .then((data) => console.log(data.data));
     }
   }, [cls]);
 
   return (
     <div>
-      <OtherPageTittle tittle="[ Select - Enroll - Trained Yourself ]" subTittle=" Our All Classes are here "/>
+      <OtherPageTittle
+        tittle="[ Select - Enroll - Trained Yourself ]"
+        subTittle=" Our All Classes are here "
+      />
       <div className=" mx-auto h-full">
-      <div className=" pt-5 flex items-center max-w-md mx-auto">
+        <div className=" pt-5 flex items-center max-w-md mx-auto">
           <input
             type="text"
             placeholder="Search..."
-            className="flex-1 py-2 px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="flex-1 py-2 px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
           />
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-r-lg"
+            className="bg-orange-500 hover:bg-orange-600 text-white py-3 px-4 rounded-r-lg"
           >
             <FaSearch></FaSearch>
           </button>
         </div>
-        <div className="grid grid-cols-4 gap-2 p-2">
+        <div className="grid grid-cols-4 gap-2 p-4">
           {allClasses?.map((cls) => (
-            <ClassCard key={cls._id} cls={cls} user={user} handleSelectClass={handleSelectClass}/>
+            <ClassCard
+              key={cls._id}
+              cls={cls}
+              user={user}
+              handleSelectClass={handleSelectClass}
+            />
           ))}
         </div>
       </div>
