@@ -1,6 +1,8 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { OtherPageTittle } from "../../components/Tittles/Tittles";
+import { FaSearch } from "react-icons/fa";
+import { InstructorCard } from "../../components/Cards/Cards";
 
 const Instructors = () => {
   const role = "instructor";
@@ -10,41 +12,66 @@ const Instructors = () => {
   }, [role]);
 
   return (
-    <div className="p-4 bg-primary">
-      {instructors.map((instructor) => (
-        <div
-          key={instructor._id}
-          className="grid grid-cols-4 gap-1 my-6 "
-        >
-          <div className=" p-4">
-            <div className="card w-auto rounded-md shadow-xl text-black h-full bg-white">
-              <figure className="mt-6">
-                <div className="avatar border-4 border-orange-600 rounded-full p-2 ">
-                  <div className="w-28  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img src="https://i.ibb.co/FHwb3Hg/Little-cute-minicom-png.png" />
-                  </div>
-                </div>
-              </figure>
-              <div className="card-body flex justify-center items-center">
-                <h2 className="card-title">
-                  {instructor.name}
-                  <span className="badge badge-secondary">Cricket</span>
-                </h2>
-                <p>{instructor.email}</p>
-                <div className="card-actions justify-end">
-                  <div className="badge badge-outline btn btn-xs rounded-full">
-                    About
-                  </div>
-                  <div className="badge badge-outline btn-xs btn rounded-full">
-                    <Link to={`/instructor-all-class/${instructor.email}`}>See Classes</Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <section>
+      <OtherPageTittle
+        tittle="[ Experienced - Friendly - Professional ]"
+        subTittle=" Find Your Perfect Instructors "
+      />
+      <div className="bg-primary">
+        <div className=" pt-5 flex items-center max-w-md mx-auto">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="flex-1 py-2 px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-r-lg"
+          >
+            <FaSearch></FaSearch>
+          </button>
         </div>
-      ))}
-    </div>
+        {instructors.map((instructor) => (
+          <div
+            key={instructor._id}
+            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:mx-20 py-5 "
+          >
+            <InstructorCard
+              ins={instructor}
+              link={`/instructor-all-class/${instructor.email}`}
+            />
+            <InstructorCard
+              ins={instructor}
+              link={`/instructor-all-class/${instructor.email}`}
+            />
+            <InstructorCard
+              ins={instructor}
+              link={`/instructor-all-class/${instructor.email}`}
+            />
+            <InstructorCard
+              ins={instructor}
+              link={`/instructor-all-class/${instructor.email}`}
+            />
+            <InstructorCard
+              ins={instructor}
+              link={`/instructor-all-class/${instructor.email}`}
+            />
+            <InstructorCard
+              ins={instructor}
+              link={`/instructor-all-class/${instructor.email}`}
+            />
+            <InstructorCard
+              ins={instructor}
+              link={`/instructor-all-class/${instructor.email}`}
+            />
+            <InstructorCard
+              ins={instructor}
+              link={`/instructor-all-class/${instructor.email}`}
+            />
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 

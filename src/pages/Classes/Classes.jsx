@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import { OtherPageTittle } from "../../components/Tittles/Tittles";
 
 const Classes = () => {
   const { user } = useAuth();
@@ -56,6 +57,7 @@ const Classes = () => {
 
   return (
     <div>
+      <OtherPageTittle tittle="[ Select - Enroll - Trained Yourself ]" subTittle=" Our All Classes are here "/>
       <div className=" mx-auto h-full">
         <div className="grid grid-cols-4 gap-2 p-2">
           {allClasses?.map((cls) => (

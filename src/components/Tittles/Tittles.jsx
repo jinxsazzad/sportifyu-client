@@ -4,27 +4,29 @@ export const HomePageTittles = ({ tittle, subTittle }) => {
   return (
     <div className=" py-6 text-center">
       <h1 className=" mb-1 text-3xl lg:text-5xl  font-bold">{tittle}</h1>
-      <p> {subTittle} </p>
+      <p>----- {subTittle} ----- </p>
     </div>
   );
 };
 
-export const OtherPageTittle = () => {
-  <div
-    className="relative bg-cover bg-center text-white text-center py-4"
-    style={{ backgroundImage: `url(${bgURL})` }}
-  >
+export const OtherPageTittle = ( {tittle,subTittle}) => {
+  return (
     <div
-      className="absolute inset-0 bg-blur bg-black bg-opacity-60"
-      style={{ backdropFilter: "blur(3px)" }}
-    ></div>
-    <div className="relative">
-      <h1 className=" mb-1 text-5xl font-bold text-white">
-        {"[ Popular Sport's Classes ]"}
-      </h1>
-      <h2 className="text-lg text-white">
-        {"Most popular classes are here ! Enrol Now!"}
-      </h2>
+      className="relative bg-cover bg-center text-white text-center py-4 h-[12rem]"
+      style={{ backgroundImage: `url(${bgURL})` }}
+    >
+      <div
+        className="absolute inset-0 bg-blur bg-black bg-opacity-60"
+        style={{ backdropFilter: "blur(3px)" }}
+      ></div>
+      <div className="relative">
+        <h1 className=" my-5 text-5xl font-bold text-white">
+          {tittle}
+        </h1>
+        <h2 className="text-xl font-semibold text-white">
+          -----  {subTittle}  -----
+        </h2>
+      </div>
     </div>
-  </div>;
+  );
 };

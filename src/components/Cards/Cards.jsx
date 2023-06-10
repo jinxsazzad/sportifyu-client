@@ -31,32 +31,26 @@ export const PopularClassCard = ({ popularCls }) => {
     </div>
   );
 };
-//todo:btn link will be dynamic
-export const InstructorCard = ({ ins }) => {
+
+export const InstructorCard = ({ ins, link }) => {
   return (
-    <div className=" p-4">
-      <div className="card w-auto rounded-md shadow-xl text-black h-full bg-white">
-        <figure className="mt-6">
-          <div className="avatar border-4 border-orange-600 rounded-full p-2 ">
-            {/* instructor img */}
-            <div className="w-28  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-              <img src="https://i.ibb.co/FHwb3Hg/Little-cute-minicom-png.png" />
-            </div>
+    <div className="card w-auto rounded-md shadow-xl text-black h-full bg-white hover:bg-gray-100 hover:shadow-2xl hover:border-orange-500 border-2 border-gray-300">
+      <figure className="mt-6">
+        <div className="avatar border-4 border-orange-600 rounded-full p-2 ">
+          {/* instructor img */}
+          <div className="w-28  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <img src="https://i.ibb.co/FHwb3Hg/Little-cute-minicom-png.png" />
           </div>
-        </figure>
-        <div className="card-body flex justify-center items-center">
-          <h2 className="card-title">
-            {"name"}
-            <span className="badge badge-secondary">Popular</span>
-          </h2>
-          <p>{"text"}</p>
-          <div className="card-actions justify-center items-center">
-            <CardBtn text="About"></CardBtn>
-            <CardBtn
-              text="See Classes"
-              link={`/instructor-all-class/${0}`}
-            ></CardBtn>
-          </div>
+        </div>
+      </figure>
+      <div className="card-body flex justify-center items-center">
+        <h2 className="card-title">
+          {"name"}
+          <span className="badge badge-secondary">Popular</span>
+        </h2>
+        <p>{"text"}</p>
+        <div className="card-actions justify-center items-center">
+          <CardBtn text="See Classes" link={link}></CardBtn>
         </div>
       </div>
     </div>
