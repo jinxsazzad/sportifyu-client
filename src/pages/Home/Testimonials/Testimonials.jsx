@@ -12,7 +12,7 @@ const Testimonials = () => {
         <h1 className=" mb-1 text-5xl  font-bold">[ Checkout Testimonials ]</h1>
         <p> Most recent testimonials are here ! </p>
       </div>
-      <div>
+      <div className="bg-primary">
         <Swiper
           slidesPerView={1}
           spaceBetween={30}

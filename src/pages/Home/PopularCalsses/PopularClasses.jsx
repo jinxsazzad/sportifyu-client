@@ -1,50 +1,28 @@
-import React, { useEffect, useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useEffect, useState } from "react";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-
-import backgroundImage from "../../../assets/Images/sports-banner.png";
-
-// import required modules
-import { Pagination } from "swiper";
 import axios from "axios";
+import { HomePageTittles } from "../../../components/Tittles/Tittles";
 const PopularClasses = () => {
   const [popularClasses, setPopularClasses] = useState(null);
   useEffect(() => {
     axios.get("/popular-classes/").then((data) => setPopularClasses(data.data));
   }, []);
-  const bgURL = 'https://i.ibb.co/gFWf1HB/sports-banner.png'
   return (
     <div>
-      {/* <div
-        className="relative bg-cover bg-center text-white text-center py-4"
-        style={{ backgroundImage: `url(${bgURL})` }}
-      >
-        <div
-          className="absolute inset-0 bg-blur bg-black bg-opacity-60"
-          style={{ backdropFilter: "blur(3px)" }}
-        ></div>
-        <div className="relative">
-          <h1 className=" mb-1 text-5xl font-bold text-white">[ Popular Sport's Classes ]</h1>
-          <h2 className="text-lg text-white">Most popular classes are here ! Enrol Now!</h2>
-        </div>
-      </div> */}
-      <div className=" py-4 text-center">
-        <h1 className=" mb-1 text-5xl  font-bold">
-          [ Popular Sport's Classes ]
-        </h1>
-        <p> Most popular classes are here ! Enrol Now! </p>
-      </div>
+      <HomePageTittles
+        tittle="[ Popular Sport's Classes ]"
+        subTittle="Most popular classes are here ! Enrol Now!"
+      />
 
-      <div className="grid grid-cols-3 gap-2 py-1 px-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 py-1 px-10">
         {popularClasses?.map((cls) => (
-          <div key={cls._id} className="card shadow-xl bg-white">
-            <figure className="inline-block">
+          <div
+            key={cls._id}
+            className="card shadow-xl bg-primary rounded-md hover:shadow-none"
+          >
+            <figure className="inline-block border-b-2 border-white">
               <img
-                className="h-56 w-56 transition-transform transform hover:scale-150"
+                className="h-56 w-56 transition-transform transform hover:scale-150 p-2 "
                 src={cls.classPicture}
                 alt=""
               />
@@ -52,13 +30,19 @@ const PopularClasses = () => {
             <div className="card-body items-center">
               <h2 className="card-title">
                 {cls.className}
-                <div className="badge badge-secondary">Popular</div>
+                <div className="badge badge-ghost ms-2 ">Popular</div>
               </h2>
-              <h5>Instructor: {cls?.instructorName}</h5>
-              <p>{cls.classDescription}</p>
+              <h5 className=" text-lg font-semibold">
+                Instructor: {cls?.instructorName}
+              </h5>
+              <p className=" text-sm">{cls.classDescription}</p>
               <div className="card-actions justify-center">
-                <div className="badge badge-outline">Select Now</div>
-                <div className="badge badge-outline">Enrol Now</div>
+                <div className=" btn btn-sm bg-orange-500 text-black hover:bg-black hover:text-white">
+                  Select Now
+                </div>
+                <div className=" btn btn-sm bg-orange-500 text-black hover:bg-black hover:text-white">
+                  Select Now
+                </div>
               </div>
             </div>
           </div>
