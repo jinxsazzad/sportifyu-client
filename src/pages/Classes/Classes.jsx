@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { OtherPageTittle } from "../../components/Tittles/Tittles";
+import { FaSearch } from "react-icons/fa";
+import { ClassCard } from "../../components/Cards/Cards";
 
 const Classes = () => {
   const { user } = useAuth();
@@ -46,7 +48,6 @@ const Classes = () => {
       };
 
       console.log(classByStudent);
-      // console.log(classUpdateField);
 
       axios
         .patch(`/classes/update-student/${_id}`, classUpdateField)
@@ -59,45 +60,22 @@ const Classes = () => {
     <div>
       <OtherPageTittle tittle="[ Select - Enroll - Trained Yourself ]" subTittle=" Our All Classes are here "/>
       <div className=" mx-auto h-full">
+      <div className=" pt-5 flex items-center max-w-md mx-auto">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="flex-1 py-2 px-4 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-r-lg"
+          >
+            <FaSearch></FaSearch>
+          </button>
+        </div>
         <div className="grid grid-cols-4 gap-2 p-2">
           {allClasses?.map((cls) => (
-            <div
-              key={cls._id}
-              className={`border-4 my-6 ${
-                cls.availableSeats === 0 ? "border-red-600" : "border-gray-400"
-              }`}
-            >
-              <div className="card pt-4 rounded-md shadow-xl  bg-white">
-                <figure>
-                  <div className="avatar">
-                    <div className="w-40 h-40">
-                      <img src={cls.classPicture} />
-                    </div>
-                  </div>
-                </figure>
-                <div className="card-body flex justify-center items-center">
-                  <h2 className="card-title">
-                    {cls.className}
-                    <span className="badge badge-secondary">New</span>
-                  </h2>
-                  <p>
-                    Instructor:{cls.instructorName} <br />
-                    Available seats: {cls.availableSeats} <br />
-                    Price:{cls.classPrice}
-                  </p>
-                  <div className="card-actions">
-                    <div
-                      onClick={() => handleSelectClass(cls._id)}
-                      className={`badge badge-secondary btn btn-xs rounded-full ${
-                        user?.role === "student" ? "bg-white" : " disabled"
-                      }`}
-                    >
-                      Select Class
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ClassCard key={cls._id} cls={cls} user={user} handleSelectClass={handleSelectClass}/>
           ))}
         </div>
       </div>
