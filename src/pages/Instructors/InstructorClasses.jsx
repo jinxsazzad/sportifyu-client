@@ -12,7 +12,7 @@ const InstructorClasses = () => {
         tittle="Classes By Your Instructor"
         subTittle="Find Your Favorite Class and Enroll"
       />
-      <div className="grid grid-cols-4 p-4 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-4 gap-2">
         {instructorClasses?.map((cls) => (
           <ClassCard key={cls._id} cls={cls} user={user} />
         ))}

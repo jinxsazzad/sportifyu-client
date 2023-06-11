@@ -48,10 +48,10 @@ export const InstructorCard = ({ ins, link }) => {
         </figure>
         <div className="card-body flex justify-center items-center">
           <h2 className="card-title">
-            {"name"}
+            {ins.name}
             <span className="badge badge-secondary">Popular</span>
           </h2>
-          <p>{"text"}</p>
+          <p>{ins.email}</p>
           <div className="card-actions justify-center items-center">
             <CardBtn text="See Classes" link={link}></CardBtn>
           </div>
@@ -94,12 +94,14 @@ export const ClassCard = ({ cls, user, handleSelectClass }) => {
           </ul>
 
           <div className="card-actions white">
-            <div
+            <button
               onClick={
                 handleSelectClass ? () => handleSelectClass(cls._id) : ""
               }
-              className={`btn btn-sm btn-outline btn-full bg-orange-500 hover:bg-black white  ${
-                user?.role === "student" || cls.availableSeats === 0 ? "" : ""
+              className={`btn btn-sm btn-outline btn-full bg-orange-500 hover:bg-black white ${
+                user?.role == "student" || cls.availableSeats === 0
+                  ? "btn-disabled"
+                  : ""
               }`}
             >
               {handleSelectClass ? (
@@ -109,7 +111,7 @@ export const ClassCard = ({ cls, user, handleSelectClass }) => {
                   Select Class
                 </Link>
               )}
-            </div>
+            </button>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import useAuth from "../../../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { HomePageTittles } from "../../../../components/Tittles/Tittles";
+import Swal from "sweetalert2";
 
 const MyClasses = () => {
   const { user } = useAuth();
@@ -15,7 +16,30 @@ const MyClasses = () => {
       .then((data) => setMyClasses(data.data));
   }, [user, myClasses]);
   const handleDeleteClass = (id) => {
-    axios.delete(`/classes/id/${id}`).then((data) => console.log(data.data));
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      axios.delete(`/classes/id/${id}`).then((data) => {
+        
+        if (result.isConfirmed && data.data.acknowledged === true) {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+        console.log(data.data)});
+      
+    })
+
+    
   };
   return (
     <div>
@@ -29,8 +53,7 @@ const MyClasses = () => {
           </div>
           <div className="">
             <h3 className="font-semibold text-lg">Feedback</h3>
-            <h5 className="font-semibold text-gray-600">Admin:{cls.adminFeedback.length}</h5>
-            <h5 className="font-semibold text-gray-600"> Students:{cls.studentFeedback.length} </h5>
+            <p className="text-sm font-medium text-gray-600">{cls.adminFeedback}</p>
           </div>
           <div>
             <button className="white hover:text-white btn btn-sm btn-outline bg-orange-500 hover:bg-black ">

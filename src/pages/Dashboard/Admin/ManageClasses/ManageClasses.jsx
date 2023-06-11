@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { updateClassStatus, updateFeedback } from "../../../../api/classes";
 import { toast } from "react-hot-toast";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 const ManageClasses = () => {
   const [allClasses, setAllClasses] = useState(null);
@@ -10,58 +10,54 @@ const ManageClasses = () => {
     axios.get("/classes").then((res) => setAllClasses(res.data));
   }, [allClasses]);
 
-  const handleFeedback= async (id)=>{
-    const feedbackId = 'admin'
+  const handleFeedback = async (id) => {
 
     const { value: feedbackText } = await Swal.fire({
-      title: 'Enter Feedback',
-      input: 'text',
-      inputPlaceholder: 'Enter your feedback',
+      title: "Why You Approved/Denied",
+      input: "text",
+      inputPlaceholder: "Enter your feedback",
       showCancelButton: true,
-      cancelButtonText: 'Cancel',
-      confirmButtonText: 'Submit',
+      cancelButtonText: "Cancel",
+      confirmButtonText: "Submit",
       inputValidator: (value) => {
         if (!value) {
-          return 'Feedback cannot be empty';
+          return "Feedback cannot be empty";
         }
       },
     });
-  
+
     if (feedbackText) {
       // User entered a value, proceed with updating the feedback
-      updateFeedback(id, feedbackId , feedbackText)
-        .then(updatedClass => {
+      updateFeedback(id,feedbackText)
+        .then((updatedClass) => {
           // Confirmation logic
           Swal.fire({
-            icon: 'success',
-            title: 'Feedback Updated',
-            text: 'Feedback has been successfully updated',
+            icon: "success",
+            title: "Feedback Updated",
+            text: "Feedback has been successfully updated",
           });
           // Perform any additional actions or display a success message
           // You can use the updatedClass object to access the updated data
         })
-        .catch(error => {
+        .catch((error) => {
           // Error handling
           Swal.fire({
-            icon: 'error',
-            title: 'Failed to Update Feedback',
-            text: 'An error occurred while updating the feedback',
+            icon: "error",
+            title: "Failed to Update Feedback",
+            text: "An error occurred while updating the feedback",
           });
           // Display an error message or handle the error accordingly
         });
     } else {
       // User canceled or did not enter a value
       Swal.fire({
-        icon: 'info',
-        title: 'Feedback Input Canceled',
-        text: 'You have canceled or left the feedback input empty',
+        icon: "info",
+        title: "Feedback Input Canceled",
+        text: "You have canceled or left the feedback input empty",
       });
       // Perform any necessary actions or display a message
     }
-
-
-
-  }
+  };
 
   return (
     <div>
@@ -76,7 +72,9 @@ const ManageClasses = () => {
             </div>
           </div>
           <div className=" col-span-2 ps-2">
-            <h3 className="font-semibold ">Instructor Name: {cls.instructorName}</h3>
+            <h3 className="font-semibold ">
+              Instructor Name: {cls.instructorName}
+            </h3>
             <p className="font-semibold">
               Email: {cls.instructorEmail} <br />
               Available Sets: {cls.availableSeats} <br />
@@ -84,13 +82,34 @@ const ManageClasses = () => {
             </p>
           </div>
           <div className=" flex flex-col ">
-            <button onClick={()=>updateClassStatus(cls._id,'approved').then(toast.success("it's approved"))} className={`btn btn-sm btn-full bg-orange-500 text-white hover:bg-black mb-2 ${cls.status==="approved"? 'btn-disabled':''} `}>
-              Approved
+            <button
+              onClick={() =>
+                updateClassStatus(cls._id, "approved").then(
+                  toast.success("it's approved")
+                )
+              }
+              className={`btn btn-sm btn-full bg-orange-500 text-white hover:bg-black mb-2 ${
+                cls.status === "pending" ? "" : "btn-disabled"
+              } `}
+            >
+              {cls.status === "approved"?"Approved":"Approve"}
             </button>
-            <button className="btn btn-sm btn-full bg-orange-500 text-white hover:bg-black mb-2">
-              Deny
+            <button
+            onClick={() =>
+              updateClassStatus(cls._id, "denied").then(
+                toast.success("it's approved")
+              )
+            }
+              className={`btn btn-sm btn-full bg-orange-500 text-white hover:bg-black mb-2 ${
+                cls.status === "pending" ? "" : "btn-disabled"
+              } `}
+            >
+              {cls.status === "denied"?"Denied":"Deny"}
             </button>
-            <button onClick={()=>handleFeedback(cls._id)} className="btn btn-sm btn-full bg-orange-500 text-white hover:bg-black">
+            <button
+              onClick={() => handleFeedback(cls._id)}
+              className={`btn btn-sm btn-full bg-orange-500 text-white hover:bg-black mb-2`}
+            >
               Feedback
             </button>
           </div>

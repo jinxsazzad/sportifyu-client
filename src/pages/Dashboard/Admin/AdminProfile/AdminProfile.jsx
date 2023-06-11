@@ -1,10 +1,13 @@
 import React from "react";
 import { HomePageTittles } from "../../../../components/Tittles/Tittles";
+import useAuth from "../../../../hooks/useAuth";
+import { CardBtn } from "../../../../components/Buttons/Buttons";
 
 const AdminProfile = () => {
+  const {user}=useAuth()
   return (
     <div>
-      <HomePageTittles  />
+      <HomePageTittles tittle="Your Profile" subTittle="Profile Update system will be coming soon !" />
       <div className="card w-1/2 mt-40 rounded-md shadow-xl text-black mx-auto bg-white">
         <figure className="mt-6">
           <div className="avatar border-4 border-orange-600 rounded-full p-2 ">
@@ -15,14 +18,12 @@ const AdminProfile = () => {
         </figure>
         <div className="card-body flex justify-center items-center">
           <h2 className="card-title">
-            Name Alex
-            <span className="badge badge-secondary">5 Years</span>
+            {user?.displayName}
+            <span className="badge badge-secondary">10 Class</span>
           </h2>
-          <p>Email: alex@gamil.com</p>
+          <p>{user?.email}</p>
           <div className="card-actions justify-end">
-            <div className="badge badge-secondary btn btn-xs rounded-full">
-              Fashion
-            </div>
+            <CardBtn text="Update Profile" />
           </div>
         </div>
       </div>

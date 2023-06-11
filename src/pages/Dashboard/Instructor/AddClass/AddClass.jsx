@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../../hooks/useAuth";
 import axios from "axios";
 import { HomePageTittles } from "../../../../components/Tittles/Tittles";
+import { toast } from "react-hot-toast";
 const AddClass = () => {
   const { user } = useAuth();
   const {
@@ -13,15 +14,17 @@ const AddClass = () => {
   const onSubmit = (data) => {
     const classData = {...data,
     status:'pending',
-    enrolledStudent:0,
     selectedStudent:0,
-    enrolled:true,
-    adminFeedback:[],
-    studentFeedback:[],
+    enrolledStudent:0,
+    adminFeedback:"",
     }
     console.log(classData)
 
-    axios.post('/classes',classData).then(data=>console.log(data.data))
+    axios.post('/classes',classData).then(data=>{
+      if(data.data.acknowledged === true){
+        toast.success("You successfully Added")
+      }
+      console.log(data.data)})
 
   };
   return (

@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 import { HomePageTittles } from "../../../../components/Tittles/Tittles";
+import { toast } from "react-hot-toast";
 
 const UpdateClass = () => {
   const {
@@ -21,7 +22,11 @@ const UpdateClass = () => {
     const updatedData = { ...data };
     axios
       .patch(`/classes/update-instructor/${_id}`, updatedData)
-      .then((data) => console.log(data.data));
+      .then((data) => {
+        if(data.data.acknowledged === true){
+          toast.success("You successfully updated")
+        }
+        console.log(data.data)});
   };
   return (
     <div>

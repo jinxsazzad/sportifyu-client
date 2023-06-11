@@ -19,10 +19,10 @@ const Dashboard = () => {
   return (
     <>
       <div className="drawer lg:drawer-open ">
-        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle h-screen" />
         <label
           htmlFor="my-drawer-2"
-          className="drawer-button lg:hidden px-5 h-screen sm:bg-secondary pt-5 text-white"
+          className="drawer-button lg:hidden px-5 sm:bg-secondary pt-5 text-white  "
         >
           <FaBars></FaBars>
         </label>
@@ -30,9 +30,9 @@ const Dashboard = () => {
           {/* Page content here */}
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side bg-gray-300">
+        <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-2 w-56  h-full bg-secondary text-white">
+          <ul className="menu p-2 w-56 h-screen bg-secondary text-white">
             {/* Sidebar content here */}
             {userRole === "admin" ? (
               <>

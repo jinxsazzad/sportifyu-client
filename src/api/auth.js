@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 export const saveUser = (user) => {
   const currentUser = {
     name: user?.displayName,
+    profile:user?.photoUrl,
     email: user?.email,
   };
   axios.put(`/users/${user?.email}`, currentUser).then((res) => {

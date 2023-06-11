@@ -8,7 +8,7 @@ const Instructors = () => {
   const role = "instructor";
   const [instructors, setInstructors] = useState([]);
   useEffect(() => {
-    axios.get(`/users/role/${role}`).then((data) => setInstructors(data.data));
+    axios.get(`/instructors`).then((data) => setInstructors(data.data));
   }, [role]);
 
   return (
@@ -31,45 +31,20 @@ const Instructors = () => {
             <FaSearch></FaSearch>
           </button>
         </div>
-        {instructors.map((instructor) => (
-          <div
-            key={instructor._id}
-            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 lg:mx-20 py-5 "
+        <div
+            
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:mx-20 py-5 "
           >
+        {instructors.map((instructor) => (
+          
             <InstructorCard
+            key={instructor._id}
               ins={instructor}
               link={`/instructor-all-class/${instructor.email}`}
             />
-            <InstructorCard
-              ins={instructor}
-              link={`/instructor-all-class/${instructor.email}`}
-            />
-            <InstructorCard
-              ins={instructor}
-              link={`/instructor-all-class/${instructor.email}`}
-            />
-            <InstructorCard
-              ins={instructor}
-              link={`/instructor-all-class/${instructor.email}`}
-            />
-            <InstructorCard
-              ins={instructor}
-              link={`/instructor-all-class/${instructor.email}`}
-            />
-            <InstructorCard
-              ins={instructor}
-              link={`/instructor-all-class/${instructor.email}`}
-            />
-            <InstructorCard
-              ins={instructor}
-              link={`/instructor-all-class/${instructor.email}`}
-            />
-            <InstructorCard
-              ins={instructor}
-              link={`/instructor-all-class/${instructor.email}`}
-            />
-          </div>
+          
         ))}
+        </div>
       </div>
     </section>
   );
