@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient();
 
-axios.defaults.baseURL = "http://localhost:5000/";
+axios.defaults.baseURL = "https://assignment-twelve-server-seven.vercel.app/";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

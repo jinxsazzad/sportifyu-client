@@ -12,7 +12,7 @@ export const HomePageTittles = ({ tittle, subTittle }) => {
 export const OtherPageTittle = ( {tittle,subTittle}) => {
   return (
     <div
-      className="relative bg-cover bg-center text-white text-center py-4 h-[12rem]"
+      className="relative bg-cover bg-center text-white text-center py-1 lg:py-4 h-[5rem] lg:h-[12rem]"
       style={{ backgroundImage: `url(${bgURL})` }}
     >
       <div
@@ -20,10 +20,10 @@ export const OtherPageTittle = ( {tittle,subTittle}) => {
         style={{ backdropFilter: "blur(3px)" }}
       ></div>
       <div className="relative">
-        <h1 className=" my-5 text-5xl font-bold text-white">
+        <h1 className=" my-1 lg:my-5 text-xl lg:text-5xl font-bold text-white">
           {tittle}
         </h1>
-        <h2 className="text-xl font-semibold text-white">
+        <h2 className=" text-sm lg:text-xl font-semibold text-white">
           -----  {subTittle}  -----
         </h2>
       </div>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { updateClassStatus, updateFeedback } from "../../../../api/classes";
 import { toast } from "react-hot-toast";
 import Swal from "sweetalert2";
+import { HomePageTittles } from "../../../../components/Tittles/Tittles";
 
 const ManageClasses = () => {
   const [allClasses, setAllClasses] = useState(null);
@@ -61,8 +62,9 @@ const ManageClasses = () => {
 
   return (
     <div>
+      <HomePageTittles tittle="Classes Page" subTittle="Mange your site Class" />
       {allClasses?.map((cls) => (
-        <div className="grid grid-cols-4 gap-1 text-black bg-primary m-4 p-2 shadow-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-1 text-black bg-primary m-4 p-2 shadow-xl">
           <div className=" col-span-4 text-center text-xl font-semibold border-b-2 pb-2 mb-3">
             {cls.className}
           </div>
@@ -71,7 +73,7 @@ const ManageClasses = () => {
               <img src={cls.classPicture} />
             </div>
           </div>
-          <div className=" col-span-2 ps-2">
+          <div className=" lg:col-span-2 ps-2">
             <h3 className="font-semibold ">
               Instructor Name: {cls.instructorName}
             </h3>

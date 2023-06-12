@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 export const saveUser = (user) => {
   const currentUser = {
     name: user?.displayName,
-    profile:user?.photoUrl,
+    profile: user?.photoUrl,
     email: user?.email,
   };
   axios.put(`/users/${user?.email}`, currentUser).then((res) => {
@@ -23,18 +23,17 @@ export const makeAdmin = (user) => {
     email: user?.email,
     role: "admin",
   };
-  if(user.role=="admin"){
-    return toast.error("He is already admin")
+  if (user.role == "admin") {
+    return toast.error("He is already admin");
   }
-    axios.put(`/users/${user?.email}`, currentUser).then((res) => {
-      if (res?.data?.acknowledged === true) {
-        toast.success("You added as Admin");
-      } else {
-        toast.error("Something Wrong");
-      }
-      // console.log(res.data.acknowledged)
-    });
-  
+  axios.put(`/users/${user?.email}`, currentUser).then((res) => {
+    if (res?.data?.acknowledged === true) {
+      toast.success("You added as Admin");
+    } else {
+      toast.error("Something Wrong");
+    }
+    // console.log(res.data.acknowledged)
+  });
 };
 export const makeInstructor = (user) => {
   const currentUser = {
@@ -42,8 +41,8 @@ export const makeInstructor = (user) => {
     email: user.email,
     role: "instructor",
   };
-  if(user.role=="instructor"){
-    return toast.error("He is already Instructor")
+  if (user.role == "instructor") {
+    return toast.error("He is already Instructor");
   }
   axios.put(`/users/${user?.email}`, currentUser).then((res) => {
     if (res?.data?.acknowledged === true) {
@@ -73,4 +72,3 @@ export const getRole = async (email) => {
     return null;
   }
 };
-

@@ -13,13 +13,17 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Dashboard = () => {
-  const {role}= useAuth()
-  console.log(role)
-  const userRole = role
+  const { role } = useAuth();
+  console.log(role);
+  const userRole = role;
   return (
     <>
       <div className="drawer lg:drawer-open ">
-        <input id="my-drawer-2" type="checkbox" className="drawer-toggle h-screen" />
+        <input
+          id="my-drawer-2"
+          type="checkbox"
+          className="drawer-toggle h-screen"
+        />
         <label
           htmlFor="my-drawer-2"
           className="drawer-button lg:hidden px-5 sm:bg-secondary pt-5 text-white  "
@@ -37,8 +41,11 @@ const Dashboard = () => {
             {userRole === "admin" ? (
               <>
                 <li>
-                  <NavLink to={'/dashboard/'}>
-                    <FaUser></FaUser> My Profile <span className="badge badge-primary badge-sm uppercase">{userRole}</span>
+                  <NavLink to={"/dashboard/"}>
+                    <FaUser></FaUser> My Profile{" "}
+                    <span className="badge badge-primary badge-sm uppercase">
+                      {userRole}
+                    </span>
                   </NavLink>
                 </li>
                 <li>
@@ -55,17 +62,20 @@ const Dashboard = () => {
             ) : userRole === "instructor" ? (
               <>
                 <li>
-                  <NavLink to={'/dashboard/'}>
-                    <FaUser></FaUser> My Profile <span className="badge badge-primary badge-sm uppercase">{userRole}</span>
+                  <NavLink to={"/dashboard/"}>
+                    <FaUser></FaUser> My Profile{" "}
+                    <span className="badge badge-primary badge-sm uppercase">
+                      {userRole}
+                    </span>
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={'/dashboard/instructor-add-class'}>
+                  <NavLink to={"/dashboard/instructor-add-class"}>
                     <FaPlusCircle></FaPlusCircle> Add a Class
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={'/dashboard/instructor-my-classes'}>
+                  <NavLink to={"/dashboard/instructor-my-classes"}>
                     <FaAsterisk></FaAsterisk> My Classes
                   </NavLink>
                 </li>
@@ -74,33 +84,35 @@ const Dashboard = () => {
               <>
                 <li>
                   <NavLink to={"/dashboard/"}>
-                    <FaUser></FaUser> My Profile <span className="badge badge-primary badge-sm uppercase">{userRole}</span>
+                    <FaUser></FaUser> My Profile{" "}
+                    <span className="badge badge-primary badge-sm uppercase">
+                      {userRole}
+                    </span>
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={'/dashboard/student-selected-classes'}>
+                  <NavLink to={"/dashboard/student-selected-classes"}>
                     <FaAsterisk></FaAsterisk> My Selected Classes
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={'/dashboard/student-enrolled-classes'}>
+                  <NavLink to={"/dashboard/student-enrolled-classes"}>
                     <FaDotCircle></FaDotCircle> MY Enrolled
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={'/dashboard/student-payment'}>
+                  <NavLink to={"/dashboard/student-payment"}>
                     <FaCreditCard></FaCreditCard> Payment
                   </NavLink>
                 </li>
               </>
             )}
-              <hr className="mt-60"/>
-            <li >
+            <hr className="mt-60" />
+            <li>
               <Link to={"/"}>
                 <FaHome></FaHome>Go to Home
               </Link>
             </li>
-            
           </ul>
         </div>
       </div>

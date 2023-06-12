@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { HomePageTittles } from "../../../components/Tittles/Tittles";
 import { PopularClassCard } from "../../../components/Cards/Cards";
+import Loading from "../../../components/Loading/Loading";
 const PopularClasses = () => {
   const [popularClasses, setPopularClasses] = useState(null);
   useEffect(() => {
@@ -15,9 +16,9 @@ const PopularClasses = () => {
         subTittle="Most popular classes are here ! Enrol Now!"
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 py-1 px-10">
-        {popularClasses?.map((popularCls) => (
+        {popularClasses? popularClasses.map((popularCls) => (
           <PopularClassCard key={popularCls._id} popularCls={popularCls} />
-        ))}
+        )):<Loading></Loading>}
       </div>
     </section>
   );

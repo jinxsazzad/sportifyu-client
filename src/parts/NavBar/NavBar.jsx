@@ -93,14 +93,14 @@ const NavBar = () => {
         </div>
         {/* site logo or name show in all size */}
         <div className="p-2 flex justify-center items-center gap-3">
-          <img
+          {/* <img
             className="w-28 h-28 rounded-full -ms-8 hidden lg:block"
             src={logo}
             alt=""
-          />
+          /> */}
           <div>
             <h3 className="text-white text-xl md:text-3xl font-semibold ">
-              Sport Spark
+              <Link to={"/"}>Sport Spark</Link>
             </h3>
             <p className="text-xs my-1 font-semibold text-[orange] hidden lg:block">
               Fueling Passion, Building Skills
@@ -121,7 +121,7 @@ const NavBar = () => {
               className="btn btn-ghost bg-black hover:bg-black btn-circle avatar"
             >
               <div className="w-auto rounded-full">
-                <img src={userPhoto} alt="User" />
+                <img src={userPhoto?userPhoto:"https://i.ibb.co/8XbndLh/pngegg.png"} alt="User" />
               </div>
             </label>
             <ul

@@ -1,16 +1,18 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { makeAdmin, makeInstructor } from "../../../../api/auth";
-import useAuth from "../../../../hooks/useAuth";
+import { HomePageTittles } from "../../../../components/Tittles/Tittles";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const ManageUsers = () => {
-  const {user}=useAuth()
   const [allUsers, setAllUsers] = useState(null);
+  const [axiosSecure] = useAxiosSecure();
+
   useEffect(() => {
-    axios.get("/users").then((res) => setAllUsers(res.data));
+    axiosSecure.get("/users").then((res) => setAllUsers(res.data));
   }, [allUsers]);
   return (
     <div>
+      <HomePageTittles tittle="Every User" subTittle="Set user role" />
       <div className="overflow-x-auto p-6 text-black">
         <table className="table text-black">
           {/* head */}
@@ -34,8 +36,16 @@ const ManageUsers = () => {
                 </td>
                 <td>{users.role}</td>
                 <td className=" text-center">
-                  <button className="btn btn-secondary btn-xs me-3"onClick={()=>makeAdmin(users)}>Admin</button>
-                  <button className="btn btn-secondary btn-xs" onClick={()=>makeInstructor(users)}>
+                  <button
+                    className="btn btn-secondary btn-xs me-3"
+                    onClick={() => makeAdmin(users)}
+                  >
+                    Admin
+                  </button>
+                  <button
+                    className="btn btn-secondary btn-xs"
+                    onClick={() => makeInstructor(users)}
+                  >
                     Instructor
                   </button>
                 </td>

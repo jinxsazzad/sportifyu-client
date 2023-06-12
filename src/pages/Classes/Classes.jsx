@@ -4,17 +4,21 @@ import useAuth from "../../hooks/useAuth";
 import { OtherPageTittle } from "../../components/Tittles/Tittles";
 import { FaSearch } from "react-icons/fa";
 import { ClassCard } from "../../components/Cards/Cards";
+import { toast } from "react-hot-toast";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Classes = () => {
-  const { user } = useAuth();
+  const { user, role } = useAuth();
   const [allClasses, setAllClasses] = useState([]);
   const [cls, setCls] = useState(null);
+  const [axiosSecure] = useAxiosSecure();
 
   const handleSelectClass = (id) => {
     axios.get(`/classes/id/${id}`).then((data) => {
       setCls(data?.data);
     });
   };
+
   useEffect(() => {
     axios.get("/classes/approved").then((data) => setAllClasses(data?.data));
   }, [cls, handleSelectClass]);
@@ -27,34 +31,38 @@ const Classes = () => {
         classPicture,
         instructorName,
         instructorEmail,
-        selectedStudent,
-        availableSeats,
+        classPrice,
       } = cls;
-
-      const classUpdateField = {
-        selectedStudent: selectedStudent + 1,
-        availableSeats: availableSeats - 1,
-      };
+      // const classUpdateField = {
+      //   selectedStudent: selectedStudent + 1,
+      //   availableSeats: availableSeats - 1,
+      // };
       const classByStudent = {
         classID: _id,
         className,
         classPicture,
         instructorName,
         instructorEmail,
+        classPrice,
         studentName: user?.displayName,
         studentEmail: user?.email,
         selected: true,
         enrolled: false,
       };
-
       console.log(classByStudent);
-
-      axios
-        .patch(`/classes/update-student/${_id}`, classUpdateField)
-        .then((data) => console.log(data.data));
-      axios
-        .post(`/students-classes`, classByStudent)
-        .then((data) => console.log(data.data));
+      // axios
+      //   .patch(`/classes/update-student/${_id}`, classUpdateField)
+      //   .then((data) => console.log(data.data));
+      if (user && role === "student") {
+        axiosSecure.post(`/students-classes`, classByStudent).then((data) => {
+          if (data.data.acknowledged === true) {
+            toast.success("Class Added. Please Login for Cheek out dashboard");
+          }
+          console.log(data.data);
+        });
+      } else {
+        toast.error("Please Login as Student!");
+      }
     }
   }, [cls]);
 

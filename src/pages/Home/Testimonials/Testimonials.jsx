@@ -32,13 +32,13 @@ const Testimonials = () => {
                   <figure className="mt-4">
                     <div className="avatar border-4 border-orange-600 rounded-full p-2 ">
                       <div className="w-28  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                        <img src="https://i.ibb.co/FHwb3Hg/Little-cute-minicom-png.png" />
+                        <img src="https://i.ibb.co/qdB3f30/pngegg-2.png.png" />
                       </div>
                     </div>
                   </figure>
                   <div className="card-body flex justify-center items-center">
                     <h2 className="card-title">
-                      {"instructor.name"}
+                      Ava Thompson
                       <span className="badge badge-secondary">5 days ago</span>
                     </h2>
                     <div>

@@ -8,7 +8,7 @@ const AdminProfile = () => {
   return (
     <div>
       <HomePageTittles tittle="Your Profile" subTittle="Profile Update system will be coming soon !" />
-      <div className="card w-1/2 mt-40 rounded-md shadow-xl text-black mx-auto bg-white">
+      <div className="card w-1/2 rounded-md shadow-xl text-black mx-auto bg-white">
         <figure className="mt-6">
           <div className="avatar border-4 border-orange-600 rounded-full p-2 ">
             <div className="w-28  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">

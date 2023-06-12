@@ -45,15 +45,12 @@ const MyClasses = () => {
     <div>
       <HomePageTittles tittle="Your Added Classes" subTittle="Edit - Delete - Many more" />
       {myClasses.map((cls) => (
-        <div className="flex justify-between items-center mx-6 bg-slate-50 mb-2 px-5 py-2">
+        <div className=" md:flex justify-between items-center mx-6 bg-slate-50 mb-2 px-5 py-2">
           <div>
             <h3 className="font-semibold text-lg">{cls.className}</h3>
             <p className="py-2">Status: <span className=" badge badge-primary font-semibold">{cls.status}</span></p>
-            <p>Enrolled Student:{cls.enrolledStudent}</p>
-          </div>
-          <div className="">
-            <h3 className="font-semibold text-lg">Feedback</h3>
-            <p className="text-sm font-medium text-gray-600">{cls.adminFeedback}</p>
+            <p>Enrolled Student: {cls.enrolledStudent}</p>
+            <p className="text-sm font-medium text-gray-600 py-1">Admin Feedback: {cls.adminFeedback}</p>
           </div>
           <div>
             <button className="white hover:text-white btn btn-sm btn-outline bg-orange-500 hover:bg-black ">

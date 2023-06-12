@@ -19,13 +19,14 @@ import Instructors from "../pages/Instructors/Instructors";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import StudentProfile from "../pages/Dashboard/Student/StudentProfile/StudentProfile";
-
+import PrivateRouter from "./PrivateRouter";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <div>Error page 404</div>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -38,14 +39,12 @@ export const router = createBrowserRouter([
       {
         path: "/instructor-all-class/:email",
         element: <InstructorClasses></InstructorClasses>,
-        loader: ({params}) =>
+        loader: ({ params }) =>
           axios
             .get(`/classes/email/${params.email}`)
             .then((response) => response.data)
             .catch((error) => {
-              // Handle error
               console.error("Error fetching data:", error);
-              // Optionally, you can throw the error to propagate it further
               throw error;
             }),
       },
@@ -61,29 +60,24 @@ export const router = createBrowserRouter([
         path: "login",
         element: <Login></Login>,
       },
-      {
-        path: "",
-        element: <div></div>,
-      },
     ],
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
-    errorElement: <div>Error page 404</div>,
+    element:<PrivateRouter><Dashboard></Dashboard></PrivateRouter>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/dashboard/",
-        element:<AdminProfile></AdminProfile>,
+        element: <AdminProfile></AdminProfile>,
       },
       {
         path: "/dashboard/",
-        element: 
-            <InstructorProfile></InstructorProfile>,
+        element: <InstructorProfile></InstructorProfile>,
       },
       {
         path: "/dashboard/",
-        element:<StudentProfile></StudentProfile>,
+        element: <StudentProfile></StudentProfile>,
       },
       {
         path: "/dashboard/admin-manage-users",
@@ -104,14 +98,12 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/instructor-class-update/id/:id",
         element: <UpdateClass></UpdateClass>,
-        loader: ({params}) =>
+        loader: ({ params }) =>
           axios
             .get(`/classes/id/${params.id}`)
             .then((response) => response.data)
             .catch((error) => {
-              // Handle error
               console.error("Error fetching data:", error);
-              // Optionally, you can throw the error to propagate it further
               throw error;
             }),
       },
@@ -126,10 +118,6 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/student-payment",
         element: <Payment></Payment>,
-      },
-      {
-        path: "/dashboard",
-        element: <div></div>,
       },
     ],
   },

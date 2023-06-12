@@ -21,17 +21,16 @@ const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
-
   const [user, setUser] = useState(null);
-  const [role,setRole] = useState(null)
+  const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-    if(user){
-     getRole(user.email).then(data=>setRole(data))
-     console.log(role);
+  useEffect(() => {
+    if (user) {
+      getRole(user.email).then((data) => setRole(data));
+      console.log(role);
     }
-  },[user])
+  }, [user]);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -59,10 +58,10 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const resetPassword =email=>{
-    setLoading(true)
-    return sendPasswordResetEmail(auth,email)
-  }
+  const resetPassword = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {

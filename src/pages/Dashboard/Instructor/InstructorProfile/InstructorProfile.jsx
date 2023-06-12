@@ -5,7 +5,7 @@ const InstructorProfile = () => {
     const {user}= useAuth()
   return (
     <div>
-      <div className="card mt-20  w-1/3 mx-auto rounded-md shadow-xl text-black h-full bg-white">
+      <div className="card mx-auto rounded-md shadow-xl text-black bg-white">
         <figure className="mt-6">
           <div className="avatar border-4 border-orange-600 rounded-full p-2 ">
             <div className="w-28  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">

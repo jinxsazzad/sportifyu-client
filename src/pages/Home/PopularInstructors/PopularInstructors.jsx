@@ -12,7 +12,7 @@ const PopularInstructors = () => {
   const [popularInstructors, setPopularInstructors] = useState(null);
   useEffect(() => {
     axios
-      .get("/popular-classes/")
+      .get("/instructors")
       .then((data) => setPopularInstructors(data.data));
   }, []);
   return (

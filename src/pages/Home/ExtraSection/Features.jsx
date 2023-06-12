@@ -8,7 +8,7 @@ import {
 const Features = () => {
   return (
     <>
-      <div className="lg:flex justify-center items-center text-justify">
+      <div className="hidden md:block lg:flex justify-center items-center text-justify">
         <div className="bg-[#da922c] p-6 flex  lg:flex-col justify-center items-center gap-3">
           <FaBook className="text-5xl"></FaBook>
           <h4 className="text-2xl font-semibold">Unique Classes</h4>
