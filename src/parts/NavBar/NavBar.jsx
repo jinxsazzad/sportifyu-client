@@ -3,14 +3,13 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import "./NavBar.css";
 import { FaBars, FaSignOutAlt } from "react-icons/fa";
+import logo from "../../assets/Images/logo.png"
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
   const userName = user?.displayName;
   const userPhoto = user?.photoURL;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const logo =
-    "https://i.ibb.co/QJ6XKmg/stock-vector-ss-logo-design-vector-template-2230247661.jpg";
 
   //for toggle menu bar in small device
   const toggleMenu = () => {
@@ -35,6 +34,15 @@ const NavBar = () => {
         <NavLink to={"/classes"} className="uppercase">
           Classes
         </NavLink>
+      </li>
+      <li tabIndex={0}>
+        <details>
+          <summary> <a>Parents</a></summary>
+          <ul className="p-2 z-10">
+            <li><a>Submenu 1</a></li>
+            <li><a>Submenu 2</a></li>
+          </ul>
+        </details>
       </li>
       {user ? (
         <li>
@@ -99,12 +107,7 @@ const NavBar = () => {
             alt=""
           /> */}
           <div>
-            <h3 className="text-white text-xl md:text-3xl font-semibold ">
-              <Link to={"/"}>Sport Spark</Link>
-            </h3>
-            <p className="text-xs my-1 font-semibold text-[orange] hidden lg:block">
-              Fueling Passion, Building Skills
-            </p>
+              <Link to={"/"}> <img className="h-40" src={logo} alt="" /> </Link>
           </div>
         </div>
       </div>
@@ -143,6 +146,7 @@ const NavBar = () => {
         )}
       </div>
     </nav>
+    
   );
 };
 

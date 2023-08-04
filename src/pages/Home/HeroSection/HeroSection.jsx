@@ -13,7 +13,7 @@ const imgThree =
 
 const HeroSection = () => {
   return (
-    <section>
+    <section className="h-[80vh]">
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
@@ -22,7 +22,7 @@ const HeroSection = () => {
         navigation={true}
         modules={[Pagination, Navigation, Autoplay]}
         autoplay={{ delay: 5000 }}
-        className="mySwiper h-[20rem] md:h-[30.5rem] "
+        // className="h-[20rem] md:h-[30.5rem] "
       >
         <SwiperSlide>
           <HeroSliderCard

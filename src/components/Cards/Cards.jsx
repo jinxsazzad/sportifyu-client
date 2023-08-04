@@ -1,35 +1,28 @@
 import { Link } from "react-router-dom";
 import { CardBtn } from "../Buttons/Buttons";
-import { motion } from "framer-motion";
+import { FaUsers } from "react-icons/fa";
 
 export const PopularClassCard = ({ popularCls }) => {
   return (
     <>
-      <div
-        className={`card rounded-md shadow-xl hover:shadow-2xl bg-white hover:border-orange-500 border-2 border-gray-300`}
-      >
-        <div className="avatar">
-          <motion.div whileTap={{ scale: 0.9 }}>
-            <img className=" rounded-t-md" src={popularCls.classPicture} />
-          </motion.div>
+      <div className="card shadow-xl rounded-none">
+        <figure className="avatar h-52 w-full">
+          <img
+            src={popularCls.classPicture}
+            
+          />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">
+            {popularCls.className}
+            <div className="badge badge-secondary p-3">${popularCls.classPrice}/month</div>
+          </h2>
+          <p className="h-20 px-1 overflow-hidden">{popularCls.classDescription}</p>
+          <div className="card-actions justify-between">
+            <div className="flex justify-center items-center"> <FaUsers className="me-2"/> {popularCls.enrolledStudent} enrolled </div>
+            <div className="">{popularCls.availableSeats} seats</div>
+          </div>
         </div>
-        <hr />
-        <div className="card-body flex justify-center items-center">
-          <h2 className="card-title">{popularCls.className}</h2>
-          <ul className="list-disc pl-4">
-            <li className="py-1">
-              <span className="text-gray-800 font-bold">Instructor:</span>{" "}
-              {popularCls.instructorName}
-            </li>
-            <li className="py-1">
-              <span className="text-gray-800 font-bold">Available seats:</span>{" "}
-              {popularCls.availableSeats}
-            </li>
-          </ul>
-        </div>
-        <button className="btn btn-secondary rounded-none btn-sm rounded-b-md">
-          Hurry UP NOW !
-        </button>
       </div>
     </>
   );
@@ -156,18 +149,14 @@ export const MyClassCard = ({
 
           <div className="card-actions justify-center white w-full ">
             <div
-              onClick={handlePayment ? () => handlePayment(cls._id,cls.classID) : ""}
+              onClick={
+                handlePayment ? () => handlePayment(cls._id, cls.classID) : ""
+              }
               className={`btn btn-block btn-sm btn-outline bg-orange-500 hover:bg-black white  ${
                 cls.availableSeats === 0 ? "btn-disabled" : ""
               }`}
             >
-              {handlePayment ? (
-                "Pay"
-              ) : (
-                <Link id="white">
-                  Pay
-                </Link>
-              )}
+              {handlePayment ? "Pay" : <Link id="white">Pay</Link>}
             </div>
             <div
               onClick={() => handleDeleteClass(cls._id)}

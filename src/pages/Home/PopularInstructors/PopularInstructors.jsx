@@ -16,7 +16,7 @@ const PopularInstructors = () => {
       .then((data) => setPopularInstructors(data.data));
   }, []);
   return (
-    <section>
+    <section className="bg-[#FFFFFF]">
       <HomePageTittles
         tittle="[ Experienced Coaches ]"
         subTittle=" Most popular instructor are here !"
@@ -50,7 +50,7 @@ const PopularInstructors = () => {
           className="mySwiper"
         >
           {popularInstructors?.map((ins) => (
-            <SwiperSlide key={ins._id}>
+            <SwiperSlide key={ins._id} className="pb-10">
               <InstructorCard ins={ins} />
             </SwiperSlide>
           ))}

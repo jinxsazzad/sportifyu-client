@@ -1,15 +1,18 @@
 import React from "react";
+import { FaMobile, FaMobileAlt } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="bg-secondary">
       <div className="footer p-10">
-        <div>
-          <h1 id="white">Sports Spark</h1>
+        <div >
+          <h1 id="white" className="text-5xl font-extrabold mb-5">Spotify U</h1>
           <p id="white">
-            ACME Industries Ltd.
+            SportifyU Academy Ltd.
             <br />
-            Providing reliable tech since 1992
+            SportifyU are passionate about sports and physical activity. <br /> Our
+            school was created out of passion for water sports and personal
+            development.
           </p>
         </div>
         <div id="white">
@@ -36,7 +39,7 @@ const Footer = () => {
       <hr />
       <div className=" text-center p-4 text-base-content">
         <p id="white">
-          Copyright © 2023 - All right reserved by ACME Industries Ltd
+          Copyright © 2023 - All right reserved by SportifyU Academy Ltd.
         </p>
       </div>
     </footer>

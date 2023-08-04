@@ -4,7 +4,7 @@ export const HomePageTittles = ({ tittle, subTittle }) => {
   return (
     <div className=" py-6 text-center">
       <h1 className=" mb-1 text-3xl lg:text-5xl  font-bold">{tittle}</h1>
-      <p>----- {subTittle} ----- </p>
+      {subTittle? <p>----- {subTittle} ----- </p>:<></>}
     </div>
   );
 };
