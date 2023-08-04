@@ -9,12 +9,12 @@ import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 const Testimonials = () => {
   const testimonials = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
-    <section>
+    <section className="">
       <HomePageTittles
-        tittle="[ Checkout Testimonials ]"
+        tittle="Checkout Testimonials"
         subTittle=" Most recent testimonials are here !"
       />
-      <div className="bg-primary">
+      <div>
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
@@ -27,8 +27,8 @@ const Testimonials = () => {
         >
           {testimonials.map((message) => (
             <SwiperSlide key={0}>
-              <div className=" md:mx-12 lg:mx-48 my-4 md:my-6">
-                <div className="card w-auto rounded-md shadow-xl text-black h-full bg-white">
+              <div className=" md:mx-12 lg:mx-48 my-10 md:my-10">
+                <div className="card w-auto rounded-md shadow-xl text-black h-full bg-[#F5F7F9]">
                   <figure className="mt-4">
                     <div className="avatar border-4 border-orange-600 rounded-full p-2 ">
                       <div className="w-28  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -71,7 +71,7 @@ const Testimonials = () => {
                         />
                       </div>
                     </div>
-                    <p>
+                    <p className="px-5">
                       <FaQuoteLeft></FaQuoteLeft>
                       As a parent, I entrust my greatest blessing to the staff
                       at Kinderex every day. The teachers and director look at

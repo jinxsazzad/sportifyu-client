@@ -2,8 +2,8 @@ const bgURL = "https://i.ibb.co/gFWf1HB/sports-banner.png";
 
 export const HomePageTittles = ({ tittle, subTittle }) => {
   return (
-    <div className=" py-6 text-center">
-      <h1 className=" mb-1 text-3xl lg:text-5xl  font-bold">{tittle}</h1>
+    <div className=" py-10 text-center">
+      <h1 className=" mb-1 text-xl lg:text-5xl  font-bold">{tittle}</h1>
       {subTittle? <p>----- {subTittle} ----- </p>:<></>}
     </div>
   );

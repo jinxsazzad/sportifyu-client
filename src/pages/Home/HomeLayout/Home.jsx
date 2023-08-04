@@ -7,6 +7,7 @@ import Testimonials from '../Testimonials/Testimonials';
 import Promotion from '../Promotion/Promotion';
 import CallforAction from '../CallforAction/CallforAction';
 import Promotion2 from '../Promotion2/Promotion2';
+import Contact from '../Contact/Contact';
 
 const Home = () => {
     return (
@@ -19,6 +20,7 @@ const Home = () => {
            <PopularInstructors></PopularInstructors>
            <Testimonials></Testimonials>
            <CallforAction></CallforAction>
+           <Contact></Contact>
         </>
     );
 };

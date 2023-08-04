@@ -9,11 +9,11 @@ const Promotion2 = () => {
   };
 
   return (
-    <section className="py-10">
-      <HomePageTittles tittle={"What Makes Swim Academy Stand Out From the Others"}/>
-      <div className="grid grid-cols-1 md:grid-cols-4">
+    <section className="py-10 container mx-auto">
+      <HomePageTittles tittle={"What Makes Different From the Others"}/>
+      <div className="grid grid-cols-1 md:grid-cols-4 mt-5">
         <div className="container mx-auto px-4 md:col-span-2 flex flex-col">
-          <div className="flex justify-center">
+          <div className="flex flex-col  lg:flex-row justify-center gap-2">
             <button
               className={`text-xl px-6 py-2 rounded-t-lg ${
                 activeTab === 1
@@ -45,7 +45,7 @@ const Promotion2 = () => {
               Great instructor
             </button>
           </div>
-          <div className="mt-4 p-4 bg-white shadow-md flex-1">
+          <div className="mt-1 p-4 bg-white shadow-md flex-1">
             {activeTab === 1 && (
               <p>
                 <span className="font-bold">Learn while having fun:</span> The

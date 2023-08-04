@@ -16,9 +16,9 @@ const PopularInstructors = () => {
       .then((data) => setPopularInstructors(data.data));
   }, []);
   return (
-    <section className="bg-[#FFFFFF]">
+    <section className="bg-[#F5F7F9]">
       <HomePageTittles
-        tittle="[ Experienced Coaches ]"
+        tittle="Meet the Instructors"
         subTittle=" Most popular instructor are here !"
       />
       <div className="mx-8">

@@ -5,7 +5,7 @@ import { FaUsers } from "react-icons/fa";
 export const PopularClassCard = ({ popularCls }) => {
   return (
     <>
-      <div className="card shadow-xl rounded-none">
+      <div className="card hover:shadow-none shadow-md rounded-md bg-[#FFFFFF]">
         <figure className="avatar h-52 w-full">
           <img
             src={popularCls.classPicture}

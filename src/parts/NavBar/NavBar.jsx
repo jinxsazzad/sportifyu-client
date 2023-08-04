@@ -37,10 +37,21 @@ const NavBar = () => {
       </li>
       <li tabIndex={0}>
         <details>
-          <summary> <a>Parents</a></summary>
+          <summary> <a>BOOKING</a></summary>
           <ul className="p-2 z-10">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
+            <li><a>All Course</a></li>
+            <li><a>Football</a></li>
+            <li><a>Basketball</a></li>
+            <li><a>Others</a></li>
+          </ul>
+        </details>
+      </li>
+      <li tabIndex={0}>
+        <details>
+          <summary> <a>CONTACT</a></summary>
+          <ul className="p-2 z-10">
+            <li><a>Send Mail</a></li>
+            <li><a>Call Now</a></li>
           </ul>
         </details>
       </li>
@@ -107,7 +118,7 @@ const NavBar = () => {
             alt=""
           /> */}
           <div>
-              <Link to={"/"}> <img className="h-40" src={logo} alt="" /> </Link>
+              <Link to={"/"}> <img className="md:h-40" src={logo} alt="" /> </Link>
           </div>
         </div>
       </div>

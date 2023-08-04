@@ -13,8 +13,8 @@ const PopularClasses = () => {
   return (
     <section className="bg-[#F5F7F9] py-7">
       <HomePageTittles
-        tittle="[ Popular Sport's Classes ]"
-        subTittle="Most popular classes are here ! Enrol Now!"
+        tittle="Our Popular Courses"
+        subTittle="Students are loving those courses"
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-1 px-10">
         {popularClasses? popularClasses.map((popularCls) => (
